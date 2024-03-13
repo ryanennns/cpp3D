@@ -4,39 +4,49 @@ namespace components
 {
 	Ray::Ray()
 	{
-		this->origin = Vector3D(0,0,0);
-		this->direction = Vector3D(1,0,0);
+		this->A = Vector3D(0,0,0);
+		this->B = Vector3D(1,0,0);
 	}
 
 	Ray::Ray(Vector3D origin, Vector3D direction)
 	{
-		this->origin = origin;
-		this->direction = direction;
+		this->A = origin;
+		this->B = direction;
 	}
 
 	Ray::Ray(Vector3D* origin, Vector3D* direction)
 	{
-		this->origin = Vector3D(origin);
-		this->direction = Vector3D(direction);
+		this->A = Vector3D(origin);
+		this->B = Vector3D(direction);
+	}
+
+	Vector3D Ray::getA()
+	{
+		return this->A;
 	}
 
 	Vector3D Ray::getOrigin()
 	{
-		return this->origin;
+		return this->A;
+	}
+	
+	Vector3D Ray::getB()
+	{
+		return this->B;
 	}
 
 	Vector3D Ray::getDirection()
 	{
-		return this->direction;
+		return this->B.subtract(this->A);
 	}
 
 	Vector3D Ray::evaluate(double t)
 	{
-		return this->origin.add(this->direction.multiply(t));
+		return this->A.add(this->getDirection().multiply(t));
 	}
 
 	Ray Ray::transform(Vector3D v)
 	{
-		return Ray(this->origin.add(v), this->direction.add(v));
+		return Ray(this->A.add(v), this->B.add(v));
 	}
 }

@@ -57,14 +57,9 @@ namespace RendererTests
 			Assert::AreEqual(60.0, resultant);
 		}
 
-		TEST_METHOD(test_it_calculates_cross_product)
-		{
-			Assert::AreEqual("", "todo");
-		}
-
-		TEST_METHOD(test_it_calculates_distance)
-		{
-			Assert::AreEqual("", "todo");
-		}
+		//TEST_METHOD(test_it_calculates_cross_product)
+		//{
+		//	Assert::AreEqual("", "todo");
+		//}
 	};
 }

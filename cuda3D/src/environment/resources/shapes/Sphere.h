@@ -2,6 +2,7 @@
 
 #include "../../../components/headers/Vector3D.h"
 #include "../../../components/headers/Ray.h"
+#include <vector>
 
 using namespace components;
 
@@ -13,7 +14,7 @@ namespace environment
 		Vector3D center;
 		double radius;
 
-		double intersectDiscriminant(Ray, double);
+		double intersectDiscriminant(Ray);
 	public:
 		Sphere();
 		Sphere(const Vector3D&, double);
@@ -21,6 +22,6 @@ namespace environment
 		Vector3D getCenter();
 		double getRadius();
 
-		bool rayIntersect(Ray, double);
+		std::vector<double> rayIntersect(Ray);
 	};
 }

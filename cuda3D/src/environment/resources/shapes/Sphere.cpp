@@ -1,28 +1,13 @@
 #include "Sphere.h"
 #include "stdio.h"
 #include <cmath>
+#include <vector>
 
 using namespace components;
 using namespace std;
 
 namespace environment
 {
-	double Sphere::intersectDiscriminant(Ray ray, double renderDistance)
-	{
-		Vector3D d = ray.evaluate(renderDistance);
-		d.consoleDisplay();
-		Vector3D e = ray.getOrigin();
-		e.consoleDisplay();
-		Vector3D c = this->center;
-		double radius = this->radius;
-
-		printf("pow(d.dotProduct(e.subtract(c)), 2):\t\t%lf\n", pow(d.dotProduct(e.subtract(c)), 2));
-		printf("d.dotProduct(d), 2):\t\t\t\t%lf\n", d.dotProduct(d));
-		printf("(e.subtract(c).dotProduct(e.subtract(c))):\t%lf\n", (e.subtract(c).dotProduct(e.subtract(c))));
-
-		return pow(d.dotProduct(e.subtract(c)), 2) - (d.dotProduct(d) * (e.subtract(c).dotProduct(e.subtract(c))));
-	}
-
 	Sphere::Sphere()
 	{
 		this->center = Vector3D(0,0,0);
@@ -45,8 +30,46 @@ namespace environment
 		return this->radius;
 	}
 
-	bool Sphere::rayIntersect(Ray ray, double renderDistance)
+	std::vector<double> Sphere::rayIntersect(Ray ray)
 	{
-		return this->intersectDiscriminant(ray, renderDistance) >= 0;
+		const double discriminant = this->intersectDiscriminant(ray);
+		vector<double> returnVector;
+
+		if (discriminant < 0.0) {
+			return returnVector;
+		}
+
+		Vector3D d = ray.getDirection();
+		Vector3D e = ray.getOrigin();
+		Vector3D center = this->center;
+
+		double a = d.dotProduct(d);
+		double b = 2 * d.dotProduct(e.subtract(center));
+
+		returnVector.push_back(
+			(-b - sqrt(discriminant)) / (2 * a)
+		);
+
+		if (discriminant > 0.0) {
+			returnVector.push_back(
+				(-b + sqrt(discriminant)) / (2 * a)
+			);
+		}
+
+		return returnVector;
+	}
+
+	double Sphere::intersectDiscriminant(Ray ray)
+	{
+		Vector3D d = ray.getDirection();
+		Vector3D e = ray.getOrigin();
+		Vector3D center = this->center;
+		double radius = this->radius;
+
+		double a = d.dotProduct(d);
+		double b = 2 * (d.dotProduct(e.subtract(center)));
+		double c = e.subtract(center).dotProduct(e.subtract(center)) - pow(radius, 2);
+
+		return pow(b, 2) - (4.0 * (a * c));
 	}
 }

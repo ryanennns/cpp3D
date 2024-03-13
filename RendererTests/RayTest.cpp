@@ -32,9 +32,11 @@ namespace RendererTests
 
 			Vector3D resultant = ray.evaluate(distance);
 
-			Assert::AreEqual(rayOriginX + (rayDirectionX * distance), resultant.x);
-			Assert::AreEqual(rayOriginY + (rayDirectionY * distance), resultant.y);
-			Assert::AreEqual(rayOriginZ + (rayDirectionZ * distance), resultant.z);
+			Vector3D direction = ray.getB().subtract(ray.getA());
+
+			Assert::AreEqual(rayOriginX + (direction.x * distance), resultant.x);
+			Assert::AreEqual(rayOriginY + (direction.y * distance), resultant.y);
+			Assert::AreEqual(rayOriginZ + (direction.z * distance), resultant.z);
 		}
 
 		TEST_METHOD(test_it_evaluates_the_ray_in_negative_direction)
@@ -56,9 +58,11 @@ namespace RendererTests
 
 			Vector3D resultant = ray.evaluate(distance);
 
-			Assert::AreEqual(rayOriginX + (rayDirectionX * distance), resultant.x);
-			Assert::AreEqual(rayOriginY + (rayDirectionY * distance), resultant.y);
-			Assert::AreEqual(rayOriginZ + (rayDirectionZ * distance), resultant.z);
+			Vector3D direction = ray.getB().subtract(ray.getA());
+
+			Assert::AreEqual(rayOriginX + (direction.x * distance), resultant.x);
+			Assert::AreEqual(rayOriginY + (direction.y * distance), resultant.y);
+			Assert::AreEqual(rayOriginZ + (direction.z * distance), resultant.z);
 		}
 	};
 }
