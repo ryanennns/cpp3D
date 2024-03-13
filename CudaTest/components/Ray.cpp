@@ -32,11 +32,11 @@ namespace components
 
 	Vector3D Ray::evaluate(double t)
 	{
-		return this->origin.add(&this->direction.multiply(t));
+		return this->origin.add(this->direction.multiply(t));
 	}
 
 	Ray Ray::transform(Vector3D v)
 	{
-		return Ray(this->origin.add(&v), this->direction.add(&v));
+		return Ray(this->origin.add(v), this->direction.add(v));
 	}
 }

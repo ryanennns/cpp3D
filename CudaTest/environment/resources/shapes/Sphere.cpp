@@ -1,4 +1,5 @@
 #include "Sphere.h"
+#include "stdio.h"
 #include <cmath>
 
 using namespace components;
@@ -9,19 +10,17 @@ namespace environment
 	double Sphere::intersectDiscriminant(Ray ray, double renderDistance)
 	{
 		Vector3D d = ray.evaluate(renderDistance);
+		d.consoleDisplay();
 		Vector3D e = ray.getOrigin();
+		e.consoleDisplay();
 		Vector3D c = this->center;
 		double radius = this->radius;
-		
-		// (Math.pow(d.dot(e.sub(c)), 2)
-		// (
-		//		d.dot(d) * (e.sub(c).dot(e.sub(c)))
-		//	  - Math.pow(this->radius, 2)
-		// )
+
+		printf("pow(d.dotProduct(e.subtract(c)), 2):\t\t%lf\n", pow(d.dotProduct(e.subtract(c)), 2));
+		printf("d.dotProduct(d), 2):\t\t\t\t%lf\n", d.dotProduct(d));
+		printf("(e.subtract(c).dotProduct(e.subtract(c))):\t%lf\n", (e.subtract(c).dotProduct(e.subtract(c))));
 
 		return pow(d.dotProduct(e.subtract(c)), 2) - (d.dotProduct(d) * (e.subtract(c).dotProduct(e.subtract(c))));
-
-		//return Math.pow(d.dot(e.sub(c)), 2) - (d.dot(d) * (e.sub(c).dot(e.sub(c))) - Math.pow(this->radius, 2));
 	}
 
 	Sphere::Sphere()
@@ -30,7 +29,7 @@ namespace environment
 		this->radius = 1;
 	}
 
-	Sphere::Sphere(Vector3D* center, double radius)
+	Sphere::Sphere(const Vector3D& center, double radius)
 	{
 		this->center = Vector3D(center);
 		this->radius = radius;

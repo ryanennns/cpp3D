@@ -16,7 +16,7 @@ namespace environment
 		double intersectDiscriminant(Ray, double);
 	public:
 		Sphere();
-		Sphere(Vector3D*, double);
+		Sphere(const Vector3D&, double);
 
 		Vector3D getCenter();
 		double getRadius();

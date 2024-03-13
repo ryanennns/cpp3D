@@ -3,18 +3,17 @@
 
 #include <stdio.h>
 #include "./components/headers/Ray.h"
+#include "./environment/resources/shapes/sphere.h"
 
 using namespace components;
+using namespace environment;
 
 int main()
 {
-    Vector3D v1 = Vector3D(0, 0, 0);
-    Vector3D v2 = Vector3D(1, 2, 3);
-    Ray ray = Ray(v1, v2);
+    Sphere sphere = Sphere(Vector3D(5,5,0), 1);
+    Ray ray = Ray(Vector3D(0,0,0), Vector3D(0,0,1));
 
-    Vector3D resultant = ray.evaluate(5);
-
-    printf("Resultant:\n\tx: %lf\n\ty: %lf\n\tz: %lf", resultant.x, resultant.y, resultant.z);
+    printf("Intersects: %d", sphere.rayIntersect(ray, 0));
 
     return 0;
 }
