@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../CudaTest/environment/resources/shapes/Sphere.h"
-#include "../CudaTest/components/headers/Ray.h"
-#include "../CudaTest/components/headers/Vector3D.h"
+#include "../CudaTest/src/environment/resources/shapes/Sphere.h"
+#include "../CudaTest/src/components/headers/Ray.h"
+#include "../CudaTest/src/components/headers/Vector3D.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace components;

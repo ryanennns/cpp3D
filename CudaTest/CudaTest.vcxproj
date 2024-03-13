@@ -80,16 +80,16 @@
     <CudaCompile Include="kernel.cu" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="components\Ray.cpp" />
-    <ClCompile Include="components\Vector3D.cpp">
+    <ClCompile Include="src\components\Ray.cpp" />
+    <ClCompile Include="src\components\Vector3D.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="environment\resources\shapes\Sphere.cpp" />
+    <ClCompile Include="src\environment\resources\shapes\Sphere.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="components\headers\Ray.h" />
-    <ClInclude Include="components\headers\Vector3D.h" />
-    <ClInclude Include="environment\resources\shapes\Sphere.h" />
+    <ClInclude Include="src\components\headers\Ray.h" />
+    <ClInclude Include="src\components\headers\Vector3D.h" />
+    <ClInclude Include="src\environment\resources\shapes\Sphere.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

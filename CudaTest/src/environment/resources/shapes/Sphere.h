@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../components/headers/Vector3D.h"
-#include "../../components/headers/Ray.h"
+#include "../../../components/headers/Vector3D.h"
+#include "../../../components/headers/Ray.h"
 
 using namespace components;
 

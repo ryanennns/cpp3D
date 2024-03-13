@@ -2,8 +2,8 @@
 #include "device_launch_parameters.h"
 
 #include <stdio.h>
-#include "./components/headers/Ray.h"
-#include "./environment/resources/shapes/sphere.h"
+#include "./src/components/headers/Ray.h"
+#include "./src/environment/resources/shapes/sphere.h"
 
 using namespace components;
 using namespace environment;
