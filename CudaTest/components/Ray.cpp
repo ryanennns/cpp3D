@@ -20,6 +20,16 @@ namespace components
 		this->direction = Vector3D(direction);
 	}
 
+	Vector3D Ray::getOrigin()
+	{
+		return this->origin;
+	}
+
+	Vector3D Ray::getDirection()
+	{
+		return this->direction;
+	}
+
 	Vector3D Ray::evaluate(double t)
 	{
 		return this->origin.add(&this->direction.multiply(t));

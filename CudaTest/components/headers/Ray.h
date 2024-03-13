@@ -13,6 +13,9 @@ namespace components
 		Ray(Vector3D, Vector3D);
 		Ray(Vector3D*, Vector3D*);
 
+		Vector3D getOrigin();
+		Vector3D getDirection();
+
 		Vector3D evaluate(double);
 		Ray transform(Vector3D);
 	};
