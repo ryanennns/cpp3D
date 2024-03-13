@@ -19,7 +19,7 @@ namespace environment
 		//	  - Math.pow(this->radius, 2)
 		// )
 
-		return pow(d.dotProduct(&e.subtract(&c)), 2) - (d.dotProduct(&d) * (e.subtract(&c).dotProduct(&e.subtract(&c))));
+		return pow(d.dotProduct(e.subtract(c)), 2) - (d.dotProduct(d) * (e.subtract(c).dotProduct(e.subtract(c))));
 
 		//return Math.pow(d.dot(e.sub(c)), 2) - (d.dot(d) * (e.sub(c).dot(e.sub(c))) - Math.pow(this->radius, 2));
 	}
@@ -48,6 +48,6 @@ namespace environment
 
 	bool Sphere::rayIntersect(Ray ray, double renderDistance)
 	{
-		return false;
+		return this->intersectDiscriminant(ray, renderDistance) >= 0;
 	}
 }

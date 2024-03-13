@@ -40,21 +40,21 @@ namespace components {
         );
     }
 
-    Vector3D Vector3D::add(Vector3D* v)
+    Vector3D Vector3D::add(const Vector3D& v)
     {
         return Vector3D(
-            this->x + v->x,
-            this->y + v->y,
-            this->z + v->z
+            this->x + v.x,
+            this->y + v.y,
+            this->z + v.z
         );
     }
 
-    Vector3D Vector3D::subtract(Vector3D* v)
+    Vector3D Vector3D::subtract(const Vector3D& v)
     {
         return Vector3D(
-            this->x - v->x,
-            this->y - v->y,
-            this->z - v->z
+            this->x - v.x,
+            this->y - v.y,
+            this->z - v.z
         );
     }
 
@@ -67,29 +67,29 @@ namespace components {
         );
     }
 
-    double Vector3D::dotProduct(Vector3D* v)
+    double Vector3D::dotProduct(const Vector3D& v)
     {
         return (
-            (this->x * v->x) +
-            (this->y * v->y) +
-            (this->z * v->z)
+            (this->x * v.x) +
+            (this->y * v.y) +
+            (this->z * v.z)
         );
     }
 
-    Vector3D Vector3D::crossProduct(Vector3D* v)
+    Vector3D Vector3D::crossProduct(const Vector3D& v)
     {
         return Vector3D(
-            (this->y * v->z) - (this->z * v->y),
-            (this->x * v->z) - (this->z * v->x),
-            (this->x * v->y) - (this->y * v->x)
+            (this->y * v.z) - (this->z * v.y),
+            (this->x * v.z) - (this->z * v.x),
+            (this->x * v.y) - (this->y * v.x)
         );
     }
 
-    double Vector3D::distanceBetween(Vector3D* v)
+    double Vector3D::distanceBetween(const Vector3D& v)
     {
-        double x = v->x - this->x;
-        double y = v->y - this->y;
-        double z = v->z - this->z;
+        double x = v.x - this->x;
+        double y = v.y - this->y;
+        double z = v.z - this->z;
 
         return std::sqrt(x * x + y * y + z * z);
     }
