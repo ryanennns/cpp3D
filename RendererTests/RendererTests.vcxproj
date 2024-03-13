@@ -164,7 +164,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="RendererTests.cpp" />
+    <ClCompile Include="RayTest.cpp" />
+    <ClCompile Include="SphereTest.cpp" />
+    <ClCompile Include="Vector3DTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
