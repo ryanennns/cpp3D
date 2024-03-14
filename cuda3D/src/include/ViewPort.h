@@ -1,11 +1,10 @@
 #pragma once
 
 #include <vector>
-#include "../components/headers/Vector3D.h"
-#include "../components/headers/Ray.h"
+#include "../include/Vector3D.h"
+#include "../include/Ray.h"
 
 using namespace std;
-using namespace components;
 
 class ViewPort
 {

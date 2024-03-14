@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdio.h>
+#include "Sphere.h"
 
 int main(void)
 {

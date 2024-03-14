@@ -2,12 +2,9 @@
 //#include "device_launch_parameters.h"
 
 #include <stdio.h>
-#include "./src/components/headers/Ray.h"
-#include "./src/environment/resources/shapes/Sphere.h"
-#include "./src/renderEngine/ViewPort.h"
-
-using namespace components;
-using namespace environment;
+#include "./src/include/Ray.h"
+#include "./src/include/Sphere.h"
+#include "./src/include/ViewPort.h"
 
 int main()
 {

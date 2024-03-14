@@ -1,12 +1,9 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "components/headers/Ray.h"
-#include "environment/resources/shapes/Sphere.h"
+#include "include/Ray.h"
+#include "include/Sphere.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-
-using namespace environment;
-using namespace components;
 
 namespace RendererTests
 {

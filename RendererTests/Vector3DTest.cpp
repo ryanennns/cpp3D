@@ -1,10 +1,8 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "components/headers/Vector3D.h"
+#include "include/Vector3D.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-
-using namespace components;
 
 namespace RendererTests
 {
