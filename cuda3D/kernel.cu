@@ -3,7 +3,8 @@
 
 #include <stdio.h>
 #include "./src/components/headers/Ray.h"
-#include "./src/environment/resources/shapes/sphere.h"
+#include "./src/environment/resources/shapes/Sphere.h"
+#include "./src/renderEngine/ViewPort.h"
 
 using namespace components;
 using namespace environment;

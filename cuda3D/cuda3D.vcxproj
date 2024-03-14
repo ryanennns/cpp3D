@@ -87,11 +87,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\environment\resources\shapes\Sphere.cpp" />
+    <ClCompile Include="src\renderEngine\ViewPort.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\headers\Ray.h" />
     <ClInclude Include="src\components\headers\Vector3D.h" />
     <ClInclude Include="src\environment\resources\shapes\Sphere.h" />
+    <ClInclude Include="src\renderEngine\ViewPort.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
