@@ -53,23 +53,22 @@ namespace RendererTests
 			Vector3D rayOrigin = Vector3D(8, 3.5, 3.95);
 			Vector3D rayDirection = Vector3D(3.18, -3.12, -7.48);
 
-			Sphere sphere = Sphere(Vector3D(4.14,-3.16,-7), 0.9);
+			Sphere sphere = Sphere(Vector3D(4.14, -3.16, -7), 0.9);
 
 			Ray ray = Ray(rayOrigin, rayDirection);
 
 			std::vector<double> rayIntersections = sphere.rayIntersect(ray);
-			
+
 			Vector3D evaluateOne = ray.evaluate(rayIntersections.at(0));
 			Vector3D evaluateTwo = ray.evaluate(rayIntersections.at(1));
-			
-			// this rounding tomfoolering is to round to two decimal places.
-			Assert::AreEqual(-5.58, std::round(evaluateOne.x * 100) / 100.0);
-			Assert::AreEqual(5.35, std::round(evaluateOne.y * 100) / 100.0);
-			Assert::AreEqual(2.29, std::round(evaluateOne.z * 100) / 100.0);
-			
-			Assert::AreEqual(-7.28, std::round(evaluateTwo.x * 100) / 100.0);
-			Assert::AreEqual(6.46, std::round(evaluateTwo.y * 100) / 100.0);
-			Assert::AreEqual(2.70, std::round(evaluateTwo.z * 100) / 100.0);
+
+			Assert::AreEqual(3.55, std::round(evaluateOne.x * 100) / 100.0);
+			Assert::AreEqual(-2.61, std::round(evaluateOne.y * 100) / 100.0);
+			Assert::AreEqual(-6.6, std::round(evaluateOne.z * 100) / 100.0);
+
+			Assert::AreEqual(3.29, std::round(evaluateTwo.x * 100) / 100.0);
+			Assert::AreEqual(-2.97, std::round(evaluateTwo.y * 100) / 100.0);
+			Assert::AreEqual(-7.22, std::round(evaluateTwo.z * 100) / 100.0);
 		}
 	};
 }

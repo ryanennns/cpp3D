@@ -11,7 +11,8 @@ class ViewPort
 private:
 	Vector3D eye;
 
-	vector<vector<Ray>> generateRays(double width, double height);
 public:
 	ViewPort();
+
+	vector<vector<Ray>> generateRays(double width, double height);
 };
