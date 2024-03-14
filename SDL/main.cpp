@@ -13,9 +13,9 @@ int main(void)
 	Sphere sphere = Sphere(Vector3D(10, 6, 7), 2);
 	Sphere sphere2 = Sphere(Vector3D(0, 0, 5), 0.8);
 
-	ViewPort viewPort = ViewPort();
+	ViewPort viewPort = ViewPort(200, 50);
 
-	vector<vector<Ray>> rays = viewPort.generateRays(200,50);
+	vector<vector<Ray>> rays = viewPort.getRays();
 
 	for (int i = 0; i < rays.size(); i++)
 	{

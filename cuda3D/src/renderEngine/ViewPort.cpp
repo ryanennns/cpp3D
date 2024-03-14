@@ -1,8 +1,15 @@
 #include "../include/ViewPort.h"
 
-ViewPort::ViewPort()
+ViewPort::ViewPort(double width, double height)
 {
 	this->eye = Vector3D(0, 0, 0);
+	this->rays = generateRays(width, height);
+}
+
+ViewPort::ViewPort(Vector3D eye, double width, double height)
+{
+	this->eye = eye;
+	this->rays = generateRays(width, height);
 }
 
 vector<vector<Ray>> ViewPort::generateRays(double width, double height)
@@ -33,4 +40,9 @@ vector<vector<Ray>> ViewPort::generateRays(double width, double height)
 	}
 
 	return rays;
+}
+
+vector<vector<Ray>> ViewPort::getRays()
+{
+	return this->rays;
 }

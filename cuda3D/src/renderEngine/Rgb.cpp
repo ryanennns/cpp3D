@@ -2,9 +2,16 @@
 
 Rgb::Rgb()
 {
-	this->r = 0.0;
-	this->g = 0.0;
-	this->b = 0.0;
+	this->r = (unsigned char)0.0;
+	this->g = (unsigned char)0.0;
+	this->b = (unsigned char)0.0;
+}
+
+Rgb::Rgb(unsigned char r, unsigned char g, unsigned char b)
+{
+	this->r = r;
+	this->g = g;
+	this->b = b;
 }
 
 unsigned char Rgb::getRed()
