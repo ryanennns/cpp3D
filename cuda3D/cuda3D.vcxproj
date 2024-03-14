@@ -90,6 +90,7 @@
     <ClCompile Include="src\renderEngine\ViewPort.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\include\BufferDriver.h" />
     <ClInclude Include="src\include\Ray.h" />
     <ClInclude Include="src\include\Vector3D.h" />
     <ClInclude Include="src\include\Sphere.h" />

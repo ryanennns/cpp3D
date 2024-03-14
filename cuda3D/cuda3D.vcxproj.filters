@@ -23,6 +23,7 @@
       <Filter>Source Files\includes</Filter>
     </ClInclude>
     <ClInclude Include="src\include\ViewPort.h" />
+    <ClInclude Include="src\include\BufferDriver.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
