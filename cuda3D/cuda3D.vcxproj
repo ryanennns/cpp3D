@@ -89,7 +89,6 @@
     <ClCompile Include="src\environment\Object.cpp" />
     <ClCompile Include="src\environment\Scene.cpp" />
     <ClCompile Include="src\environment\surfaces\Sphere.cpp" />
-    <ClCompile Include="src\environment\surfaces\Surface.cpp" />
     <ClCompile Include="src\renderEngine\Rgb.cpp" />
     <ClCompile Include="src\renderEngine\ViewPort.cpp" />
   </ItemGroup>
