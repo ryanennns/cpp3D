@@ -5,7 +5,8 @@
 #include "Sphere.h"
 #include "Vector3D.h"
 #include "ViewPort.h"
-#include <Ray.h>
+#include "Ray.h"
+#include "Rgb.h"
 
 int main(void)
 {
@@ -20,8 +21,8 @@ int main(void)
 	{
 		for (int j = 0; j < rays.at(i).size(); j++)
 		{
-			vector<double> intersects = sphere.rayIntersect(rays.at(i).at(j));
-			vector<double> intersects2 = sphere2.rayIntersect(rays.at(i).at(j));
+			vector<double> intersects = sphere.intersections(rays.at(i).at(j));
+			vector<double> intersects2 = sphere2.intersections(rays.at(i).at(j));
 			if (intersects.size() == 0 && intersects2.size() == 0) {
 				printf(" ");
 			}

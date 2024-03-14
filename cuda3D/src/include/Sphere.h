@@ -1,10 +1,12 @@
 #pragma once
 
-#include "../include/Vector3D.h"
-#include "../include/Ray.h"
+
+#include "Surface.h"
+#include "Vector3D.h"
+#include "Ray.h"
 #include <vector>
 
-class Sphere
+class Sphere : Surface
 {
 private:
 	Vector3D center;
@@ -18,5 +20,5 @@ public:
 	Vector3D getCenter();
 	double getRadius();
 
-	std::vector<double> rayIntersect(Ray);
+	std::vector<double> intersections(Ray);
 };

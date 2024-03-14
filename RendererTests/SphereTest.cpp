@@ -19,7 +19,7 @@ namespace RendererTests
 			Sphere sphere = Sphere(Vector3D(0, 10, 0), 1);
 			Ray ray = Ray(Vector3D(0, 0, 0), Vector3D(0, 0, 1));
 
-			std::vector<double> rayIntersections = sphere.rayIntersect(ray);
+			std::vector<double> rayIntersections = sphere.intersections(ray);
 
 			Assert::AreEqual((size_t)0, rayIntersections.size());
 		}
@@ -33,7 +33,7 @@ namespace RendererTests
 
 			Ray ray = Ray(rayOrigin, rayDirection);
 
-			std::vector<double> rayIntersections = sphere.rayIntersect(ray);
+			std::vector<double> rayIntersections = sphere.intersections(ray);
 			
 			Vector3D evaluateOne = ray.evaluate(rayIntersections.at(0));
 			Vector3D evaluateTwo = ray.evaluate(rayIntersections.at(1));
@@ -57,7 +57,7 @@ namespace RendererTests
 
 			Ray ray = Ray(rayOrigin, rayDirection);
 
-			std::vector<double> rayIntersections = sphere.rayIntersect(ray);
+			std::vector<double> rayIntersections = sphere.intersections(ray);
 
 			Vector3D evaluateOne = ray.evaluate(rayIntersections.at(0));
 			Vector3D evaluateTwo = ray.evaluate(rayIntersections.at(1));
