@@ -1,6 +1,0 @@
-.vs
-x64
-CudaTest/x64
-CudaTest/.vscode
-cuda3D/cuda3D.vcvxproj
-cuda3D/cuda3D.vcvxproj.filters
