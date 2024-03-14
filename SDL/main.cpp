@@ -14,7 +14,7 @@ int main(void)
 
 	ViewPort viewPort = ViewPort();
 
-	vector<vector<Ray>> rays = viewPort.generateRays(80,100);
+	vector<vector<Ray>> rays = viewPort.generateRays(200,50);
 
 	for (int i = 0; i < rays.size(); i++)
 	{

@@ -11,6 +11,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RendererTests", "RendererTe
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDL", "SDL\SDL.vcxproj", "{EA504F17-1A72-4994-807A-E8A6CE2E89FE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BE1F0F92-73ED-4C61-A753-481AD3390156} = {BE1F0F92-73ED-4C61-A753-481AD3390156}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
