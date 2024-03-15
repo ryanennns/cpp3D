@@ -27,7 +27,7 @@ double Sphere::getRadius()
 	return this->radius;
 }
 
-std::vector<double> Sphere::rayIntersect(Ray ray)
+std::vector<double> Sphere::intersections(Ray ray)
 {
 	const double discriminant = this->intersectDiscriminant(ray);
 	vector<double> returnVector;

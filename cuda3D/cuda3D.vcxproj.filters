@@ -7,10 +7,15 @@
     <ClCompile Include="src\components\Vector3D.cpp">
       <Filter>Source Files\components</Filter>
     </ClCompile>
-    <ClCompile Include="src\environment\shapes\Sphere.cpp">
+    <ClCompile Include="src\environment\surfaces\Sphere.cpp">
       <Filter>Source Files\shapes</Filter>
     </ClCompile>
     <ClCompile Include="src\renderEngine\ViewPort.cpp" />
+    <ClCompile Include="src\renderEngine\Rgb.cpp" />
+    <ClCompile Include="src\environment\Scene.cpp" />
+    <ClCompile Include="src\environment\Object.cpp" />
+    <ClCompile Include="src\renderEngine\ViewDriver.cpp" />
+    <ClCompile Include="src\environment\surfaces\Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\Ray.h">
@@ -23,6 +28,12 @@
       <Filter>Source Files\includes</Filter>
     </ClInclude>
     <ClInclude Include="src\include\ViewPort.h" />
+    <ClInclude Include="src\include\Rgb.h" />
+    <ClInclude Include="src\include\Scene.h" />
+    <ClInclude Include="src\include\Surface.h" />
+    <ClInclude Include="src\include\Object.h" />
+    <ClInclude Include="src\include\ViewDriver.h" />
+    <ClInclude Include="src\include\Triangle.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

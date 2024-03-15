@@ -9,7 +9,7 @@ public:
     Vector3D(double x, double y, double z);
 
     double magnitude();
-    Vector3D normalized();
+    Vector3D normalize();
     Vector3D add(const Vector3D& v);
     Vector3D subtract(const Vector3D& v);
     Vector3D multiply(double scalar);
@@ -17,6 +17,4 @@ public:
     Vector3D crossProduct(const Vector3D& v);
     double distanceBetween(const Vector3D& v);
     void consoleDisplay();
-
-    static void debug(Vector3D v1, Vector3D v2);
 };
