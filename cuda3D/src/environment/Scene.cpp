@@ -23,7 +23,7 @@ vector<double> Scene::intersections(Ray ray)
 	vector<double> intersections;
 	for (int i = 0; i < this->objects.size(); i++)
 	{
-		vector<double> objectIntersections = objects[i].intersections(ray);
+		vector<double> objectIntersections = objects.at(i).intersections(ray);
 		if (objectIntersections.size() > 0)
 		{
 			intersections.push_back(objectIntersections.at(0));

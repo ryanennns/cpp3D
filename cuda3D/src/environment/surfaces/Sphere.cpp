@@ -69,3 +69,8 @@ double Sphere::intersectDiscriminant(Ray ray)
 
 	return pow(b, 2) - (4.0 * (a * c));
 }
+
+void Sphere::transform(Vector3D translation, Vector3D rotation)
+{
+	this->center = this->center.add(translation);
+}

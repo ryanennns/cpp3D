@@ -92,3 +92,9 @@ bool Triangle::isPointInTriangle(Vector3D point)
 	return false;
 }
 
+void Triangle::transform(Vector3D translation, Vector3D rotation)
+{
+	this->A = this->A.add(translation);
+	this->B = this->B.add(translation);
+	this->C = this->C.add(translation);
+}
