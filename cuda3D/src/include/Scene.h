@@ -10,7 +10,7 @@ public:
 
 	void addObject(Object object);
 	std::vector<Object> getObjects();
-	std::vector<double> intersections(Ray);
+	std::vector<Vector3D> intersections(Ray);
 private:
 	std::vector<Object> objects;
 };

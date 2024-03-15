@@ -11,6 +11,7 @@
 #include "./src/include/Vector3D.h"
 #include "./src/include/ViewDriver.h"
 #include "./src/include/ViewPort.h"
+#include "./src/include/Light.h"
 
 int main()
 {

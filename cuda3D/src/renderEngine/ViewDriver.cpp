@@ -11,13 +11,23 @@ vector<vector<Rgb>> ViewDriver::processFrame()
 {
 	vector<vector<Ray>> rays = viewPort.getRays();
 
+	//Object object = Object();
+	//object.addSurface(
+	//	new Sphere(
+	//		Vector3D(0, 0, 10),
+	//		);
+
 	for (int i = 0; i < rays.size(); i++)
 	{
-		for (int j = 0; j < rays.at(i).size(); j++)
+		vector<Ray> row = rays.at(i);
+		for (int j = 0; j < row.size(); j++)
 		{
-			Ray ray = rays.at(i).at(j);
-
-			vector<double> intersections = scene.intersections(ray);
+			Ray ray = row.at(j);
+			vector<Vector3D> intersections = scene.intersections(ray);
+			if (intersections.size() > 0)
+			{
+				
+			}
 		}
 	}
 

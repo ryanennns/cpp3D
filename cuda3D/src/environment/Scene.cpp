@@ -18,12 +18,12 @@ vector<Object> Scene::getObjects()
 	return this->objects;
 }
 
-vector<double> Scene::intersections(Ray ray)
+vector<Vector3D> Scene::intersections(Ray ray)
 {
-	vector<double> intersections;
+	vector<Vector3D> intersections;
 	for (int i = 0; i < this->objects.size(); i++)
 	{
-		vector<double> objectIntersections = objects.at(i).intersections(ray);
+		vector<Vector3D> objectIntersections = objects.at(i).intersections(ray);
 		if (objectIntersections.size() > 0)
 		{
 			intersections.push_back(objectIntersections.at(0));

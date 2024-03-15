@@ -16,6 +16,7 @@
     <ClCompile Include="src\environment\Object.cpp" />
     <ClCompile Include="src\renderEngine\ViewDriver.cpp" />
     <ClCompile Include="src\environment\surfaces\Triangle.cpp" />
+    <ClCompile Include="src\environment\Light.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\Ray.h">
@@ -34,6 +35,7 @@
     <ClInclude Include="src\include\Object.h" />
     <ClInclude Include="src\include\ViewDriver.h" />
     <ClInclude Include="src\include\Triangle.h" />
+    <ClInclude Include="src\include\Light.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

@@ -28,7 +28,7 @@ namespace RendererTests
 				Vector3D(0, 0, 1)
 			);
 
-			vector<double> intersections = triangle.intersections(ray);
+			vector<Vector3D> intersections = triangle.intersections(ray);
 
 			size_t expected = 1;
 			size_t actual = intersections.size();
@@ -49,7 +49,7 @@ namespace RendererTests
 				Vector3D(0, 0, 1)
 			);
 
-			vector<double> intersections = triangle.intersections(ray);
+			vector<Vector3D> intersections = triangle.intersections(ray);
 
 			size_t expected = 0;
 			size_t actual = intersections.size();
@@ -70,7 +70,7 @@ namespace RendererTests
 				Vector3D(0, 0, 1)
 			);
 
-			vector<double> intersections = triangle.intersections(ray);
+			vector<Vector3D> intersections = triangle.intersections(ray);
 
 			size_t expected = 0;
 			size_t actual = intersections.size();

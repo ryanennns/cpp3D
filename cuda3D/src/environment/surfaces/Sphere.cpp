@@ -27,10 +27,10 @@ double Sphere::getRadius()
 	return this->radius;
 }
 
-std::vector<double> Sphere::intersections(Ray ray)
+std::vector<Vector3D> Sphere::intersections(Ray ray)
 {
 	const double discriminant = this->intersectDiscriminant(ray);
-	vector<double> returnVector;
+	vector<Vector3D> returnVector;
 
 	if (discriminant < 0.0) {
 		return returnVector;
@@ -44,12 +44,12 @@ std::vector<double> Sphere::intersections(Ray ray)
 	double b = 2 * d.dotProduct(e.subtract(center));
 
 	returnVector.push_back(
-		(-b - sqrt(discriminant)) / (2 * a)
+		ray.evaluate((-b - sqrt(discriminant)) / (2 * a))
 	);
 
 	if (discriminant > 0.0) {
 		returnVector.push_back(
-			(-b + sqrt(discriminant)) / (2 * a)
+			ray.evaluate((-b + sqrt(discriminant)) / (2 * a))
 		);
 	}
 

@@ -25,6 +25,6 @@ public:
 
 	Vector3D getNormal();
 
-	std::vector<double> intersections(Ray) override;
+	std::vector<Vector3D> intersections(Ray) override;
 	void transform(Vector3D translation, Vector3D rotation = Vector3D(0, 0, 0)) override;
 };

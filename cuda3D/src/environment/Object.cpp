@@ -16,14 +16,14 @@ Object::~Object()
 	}
 }
 
-vector<double> Object::intersections(Ray ray)
+vector<Vector3D> Object::intersections(Ray ray)
 {
-	vector<double> returnVector;
+	vector<Vector3D> returnVector;
 
 	for (int i = 0; i < surfaces.size(); i++)
 	{
 		// todo this throws an exception when using a scene
-		vector<double> intersects = surfaces.at(i)->intersections(ray);
+		vector<Vector3D> intersects = surfaces.at(i)->intersections(ray);
 		for (int j = 0; j < intersects.size(); j++)
 		{
 			returnVector.push_back(intersects.at(j));

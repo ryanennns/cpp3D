@@ -47,9 +47,9 @@ Vector3D Triangle::getNormal()
 	return normal;
 }
 
-std::vector<double> Triangle::intersections(Ray ray)
+std::vector<Vector3D> Triangle::intersections(Ray ray)
 {
-	std::vector<double> returnVector;
+	std::vector<Vector3D> returnVector;
 
 	Vector3D normal = this->getNormal();
 	double NdotRayDirection = normal.dotProduct(ray.getDirection());
@@ -66,7 +66,7 @@ std::vector<double> Triangle::intersections(Ray ray)
 		this->isPointInTriangle(ray.evaluate(t))
 		&& t > 0
 	) {
-		returnVector.push_back(t);
+		returnVector.push_back(ray.evaluate(t));
 	}
 
 	return returnVector;
