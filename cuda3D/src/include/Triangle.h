@@ -10,8 +10,9 @@ class Triangle : Surface
 {
 private:
 	Vector3D A, B, C;
+
+	bool isPointInTriangle(Vector3D);
 public:
-	Triangle(Triangle&);
 	Triangle(Vector3D, Vector3D, Vector3D);
 
 	Vector3D getA();
@@ -24,5 +25,5 @@ public:
 
 	Vector3D getNormal();
 
-	std::vector<double> intersections(Ray);
+	std::vector<double> intersections(Ray) override;
 };

@@ -7,11 +7,17 @@
 #include "ViewPort.h"
 #include "Ray.h"
 #include "Rgb.h"
+#include "Triangle.h"
 
 int main(void)
 {
-	Sphere sphere = Sphere(Vector3D(10, 6, 7), 2);
-	Sphere sphere2 = Sphere(Vector3D(0, 0, 5), 0.8);
+	// the same sort of console demo test harness, except with a triangle about 5units in front of the camera.
+
+	Triangle triangle = Triangle(
+		Vector3D(5, 0, 10),
+		Vector3D(-5, 5, 10),
+		Vector3D(-5, -5, 10)
+	);
 
 	ViewPort viewPort = ViewPort(200, 50);
 
@@ -21,9 +27,8 @@ int main(void)
 	{
 		for (int j = 0; j < rays.at(i).size(); j++)
 		{
-			vector<double> intersects = sphere.intersections(rays.at(i).at(j));
-			vector<double> intersects2 = sphere2.intersections(rays.at(i).at(j));
-			if (intersects.size() == 0 && intersects2.size() == 0) {
+			vector<double> intersects = triangle.intersections(rays.at(i).at(j));
+			if (intersects.size() == 0) {
 				printf(" ");
 			}
 			else {

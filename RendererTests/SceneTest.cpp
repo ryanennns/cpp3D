@@ -8,7 +8,7 @@ namespace RendererTests
 	TEST_CLASS(SceneTest)
 	{
 	public:
-		TEST_METHOD(tset_it_returns_all_ray_intersections)
+		TEST_METHOD(test_it_returns_all_ray_intersections)
 		{
 			Assert::AreEqual("", "TODO");
 		}

@@ -15,12 +15,12 @@ namespace RendererTests
 	TEST_CLASS(TriangleTest)
 	{
 	public:
-		TEST_METHOD(test_it_detects_intersects_if_line_intersects)
+		TEST_METHOD(test_it_detects_intersect_if_line_intersects)
 		{
 			Triangle triangle = Triangle(
-				Vector3D(-5, -5, 3),
+				Vector3D(5, 0, 3),
 				Vector3D(-5, 5, 3),
-				Vector3D(5, 0, 3)
+				Vector3D(-5, -5, 3)
 			);
 
 			Ray ray = Ray(
@@ -36,12 +36,33 @@ namespace RendererTests
 			Assert::AreEqual(expected, actual);
 		}
 
-		TEST_METHOD(test_it_does_not_intersect_if_line_does_not_intersect)
+		TEST_METHOD(test_it_does_not_return_intersect_if_line_does_not_intersect)
 		{
 			Triangle triangle = Triangle(
-				Vector3D(-5, 1, 3),
+				Vector3D(-5, 2, 3),
 				Vector3D(-5, 5, 3),
-				Vector3D(5, 1, 3)
+				Vector3D(5, 2, 3)
+			);
+
+			Ray ray = Ray(
+				Vector3D(0, 0, 0),
+				Vector3D(0, 0, 1)
+			);
+
+			vector<double> intersections = triangle.intersections(ray);
+
+			size_t expected = 0;
+			size_t actual = intersections.size();
+
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(test_it_does_not_return_intersect_if_triangle_is_behind_origin)
+		{
+			Triangle triangle = Triangle(
+				Vector3D(5, 0, -3),
+				Vector3D(-5, 5, -3),
+				Vector3D(-5, -5, -3)
 			);
 
 			Ray ray = Ray(
