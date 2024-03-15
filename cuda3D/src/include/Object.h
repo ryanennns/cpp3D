@@ -10,7 +10,9 @@ class Object
 {
 public:
 	Object();
+	~Object();
 	std::vector<double> intersections(Ray ray);
+	void addSurface(Surface* surface);
 private:
 	std::vector<Surface*> surfaces;
 };

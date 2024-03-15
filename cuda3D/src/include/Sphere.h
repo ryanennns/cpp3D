@@ -6,7 +6,7 @@
 #include "Ray.h"
 #include <vector>
 
-class Sphere : Surface
+class Sphere : public Surface
 {
 private:
 	Vector3D center;
@@ -20,5 +20,5 @@ public:
 	Vector3D getCenter();
 	double getRadius();
 
-	std::vector<double> intersections(Ray);
+	std::vector<double> intersections(Ray) override;
 };

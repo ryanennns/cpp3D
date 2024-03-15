@@ -5,5 +5,6 @@
 
 class Surface
 {
+public:
 	virtual std::vector<double> intersections(Ray) = 0;
 };

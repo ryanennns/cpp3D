@@ -8,15 +8,32 @@
 #include "Ray.h"
 #include "Rgb.h"
 #include "Triangle.h"
+#include "Object.h"
 
 int main(void)
 {
-	// the same sort of console demo test harness, except with a triangle about 5units in front of the camera.
+	Object object = Object();
 
-	Triangle triangle = Triangle(
-		Vector3D(5, 0, 10),
-		Vector3D(-5, 5, 10),
-		Vector3D(-5, -5, 10)
+	object.addSurface(
+		new Triangle(
+			Vector3D(-5, -5, 10),
+			Vector3D(-5, 3, 5),
+			Vector3D(5, 0, 5)
+		)
+	);
+
+	object.addSurface(
+		new Sphere(
+			Vector3D(15, 0, 10),
+			1.5
+		)
+	);
+
+	object.addSurface(
+		new Sphere(
+			Vector3D(-15, 0, 10),
+			1.5
+		)
 	);
 
 	ViewPort viewPort = ViewPort(200, 50);
@@ -27,7 +44,7 @@ int main(void)
 	{
 		for (int j = 0; j < rays.at(i).size(); j++)
 		{
-			vector<double> intersects = triangle.intersections(rays.at(i).at(j));
+			vector<double> intersects = object.intersections(rays.at(i).at(j));
 			if (intersects.size() == 0) {
 				printf(" ");
 			}

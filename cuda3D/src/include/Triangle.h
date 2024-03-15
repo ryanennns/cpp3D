@@ -6,7 +6,7 @@
 
 #include <vector>
 
-class Triangle : Surface
+class Triangle : public Surface
 {
 private:
 	Vector3D A, B, C;
