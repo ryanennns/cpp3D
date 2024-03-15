@@ -9,7 +9,7 @@ public:
     Vector3D(double x, double y, double z);
 
     double magnitude();
-    Vector3D normalized();
+    Vector3D normalize();
     Vector3D add(const Vector3D& v);
     Vector3D subtract(const Vector3D& v);
     Vector3D multiply(double scalar);

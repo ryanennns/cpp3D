@@ -28,7 +28,7 @@ double Vector3D::magnitude()
     return std::sqrt(x * x + y * y + z * z);
 }
 
-Vector3D Vector3D::normalized()
+Vector3D Vector3D::normalize()
 {
     double magnitude = this->magnitude();
 
@@ -122,8 +122,8 @@ void Vector3D::debug(Vector3D v1, Vector3D v2)
     printf("\n");
 
     printf("Normalized Magnitude (Expects 1.0):\n");
-    printf("V1:\t%lf\n", v1.normalized().magnitude());
-    printf("V2:\t%lf\n\n", v2.normalized().magnitude());
+    printf("V1:\t%lf\n", v1.normalize().magnitude());
+    printf("V2:\t%lf\n\n", v2.normalize().magnitude());
 
     printf("Dot Product:\n");
     printf("V1 . V2 = %lf\n\n", v1.dotProduct(&v2));
