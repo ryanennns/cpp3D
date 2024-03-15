@@ -23,6 +23,7 @@ vector<Vector3D> Object::intersections(Ray ray)
 	for (int i = 0; i < surfaces.size(); i++)
 	{
 		// todo this throws an exception when using a scene
+		Surface* surface = surfaces.at(i);
 		vector<Vector3D> intersects = surfaces.at(i)->intersections(ray);
 		for (int j = 0; j < intersects.size(); j++)
 		{

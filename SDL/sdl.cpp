@@ -10,6 +10,7 @@
 #include "Rgb.h"
 #include "Triangle.h"
 #include "Object.h"
+#include "Scene.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
@@ -50,15 +51,23 @@ int main(int argc, char* args[])
 			screenSurface = SDL_GetWindowSurface(window);
 
 			Uint32 staticColor = SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF);
-			Object object = Object();
-			object.addSurface(
+			Scene scene = Scene();
+
+			Object* object = new Object();
+			object->addSurface(
 				new Triangle(
 					Vector3D(-1.5, 1, 3),
 					Vector3D(1, -1.5, 3),
 					Vector3D(1, 1, 3)
 				)
 			);
-			object.addSurface(new Sphere(Vector3D(8, 8, 10), 1));
+			object->addSurface(
+				new Sphere(Vector3D(8, 8, 10), 1)
+			);
+
+			scene.addObject(object);
+
+			scene.getObjects().at(0);
 
 			ViewPort viewPort = ViewPort(SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -68,7 +77,7 @@ int main(int argc, char* args[])
 			{
 				for (int x = 0; x < SCREEN_WIDTH; ++x)
 				{
-					if (object.intersections(rays.at(y).at(x)).size() > 0)
+					if (scene.intersections(rays.at(y).at(x)).size() > 0)
 					{
 						set_pixel(screenSurface, x, y, staticColor);
 					}

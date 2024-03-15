@@ -15,4 +15,5 @@ private:
 	ViewPort viewPort;
 
 	vector<vector<Rgb>> processFrame();
+	Rgb processLighting(Vector3D);
 };
