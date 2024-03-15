@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Surface.h"
+#include "Vector3D.h"
+#include "Ray.h"
+
 #include <vector>
 
 class Triangle : Surface

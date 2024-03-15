@@ -56,10 +56,5 @@ namespace RendererTests
 
 			Assert::AreEqual(expected, actual);
 		}
-
-		TEST_METHOD(test_it_detects_perpendicularity_to_triangle_normal)
-		{
-			Assert::AreEqual("", "TODO");
-		}
 	};
 }

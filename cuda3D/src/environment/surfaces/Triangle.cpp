@@ -1,4 +1,5 @@
 #include "../../include/Triangle.h"
+#include "../../include/Vector3D.h"
 #include "../../include/Ray.h"
 
 Triangle::Triangle(Triangle& t)
