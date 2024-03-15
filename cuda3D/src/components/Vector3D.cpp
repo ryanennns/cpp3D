@@ -79,7 +79,7 @@ Vector3D Vector3D::crossProduct(const Vector3D& v)
 {
     return Vector3D(
         (this->y * v.z) - (this->z * v.y),
-        (this->x * v.z) - (this->z * v.x),
+        (this->z * v.x) - (this->x * v.z),
         (this->x * v.y) - (this->y * v.x)
     );
 }

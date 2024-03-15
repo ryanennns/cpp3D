@@ -55,9 +55,16 @@ namespace RendererTests
 			Assert::AreEqual(60.0, resultant);
 		}
 
-		//TEST_METHOD(test_it_calculates_cross_product)
-		//{
-		//	Assert::AreEqual("", "todo");
-		//}
+		TEST_METHOD(test_it_calculates_cross_product)
+		{
+			Vector3D v1 = Vector3D(1, 2, 3);
+			Vector3D v2 = Vector3D(4, 5, 6);
+
+			Vector3D resultant = v1.crossProduct(v2);
+
+			Assert::AreEqual(-3.0, resultant.x);
+			Assert::AreEqual(6.0, resultant.y);
+			Assert::AreEqual(-3.0, resultant.z);
+		}
 	};
 }
