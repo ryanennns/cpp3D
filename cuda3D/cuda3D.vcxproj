@@ -89,7 +89,9 @@
     <ClCompile Include="src\environment\Object.cpp" />
     <ClCompile Include="src\environment\Scene.cpp" />
     <ClCompile Include="src\environment\surfaces\Sphere.cpp" />
+    <ClCompile Include="src\environment\surfaces\Triangle.cpp" />
     <ClCompile Include="src\renderEngine\Rgb.cpp" />
+    <ClCompile Include="src\renderEngine\ViewDriver.cpp" />
     <ClCompile Include="src\renderEngine\ViewPort.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -98,8 +100,10 @@
     <ClInclude Include="src\include\Rgb.h" />
     <ClInclude Include="src\include\Scene.h" />
     <ClInclude Include="src\include\Surface.h" />
+    <ClInclude Include="src\include\Triangle.h" />
     <ClInclude Include="src\include\Vector3D.h" />
     <ClInclude Include="src\include\Sphere.h" />
+    <ClInclude Include="src\include\ViewDriver.h" />
     <ClInclude Include="src\include\ViewPort.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
