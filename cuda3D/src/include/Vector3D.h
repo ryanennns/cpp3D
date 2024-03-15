@@ -17,6 +17,4 @@ public:
     Vector3D crossProduct(const Vector3D& v);
     double distanceBetween(const Vector3D& v);
     void consoleDisplay();
-
-    static void debug(Vector3D v1, Vector3D v2);
 };

@@ -97,39 +97,3 @@ void Vector3D::consoleDisplay()
 {
     printf("(%lf, %lf, %lf)\n", this->x, this->y, this->z);
 }
-
-// right now this thing pisses memory EVERYWHERE lol
-void Vector3D::debug(Vector3D v1, Vector3D v2)
-{
-    printf("Testing Vectors\n");
-    v1.consoleDisplay();
-    v2.consoleDisplay();
-
-    printf("\n");
-
-    printf("Magnitude:\n");
-    printf("V1:\t%lf\n", v1.magnitude());
-    printf("V2:\t%lf\n", v2.magnitude());
-
-    printf("Adding V1 + V2\n");
-    Vector3D sum = v1.add(&v2);
-    printf("(%lf, %lf, %lf)\n", sum.x, sum.y, sum.z);
-
-    printf("Multiplying V1 * 5\n");
-    v1.consoleDisplay();
-    printf("\n");
-    v1.multiply(5).consoleDisplay();
-    printf("\n");
-
-    printf("Normalized Magnitude (Expects 1.0):\n");
-    printf("V1:\t%lf\n", v1.normalize().magnitude());
-    printf("V2:\t%lf\n\n", v2.normalize().magnitude());
-
-    printf("Dot Product:\n");
-    printf("V1 . V2 = %lf\n\n", v1.dotProduct(&v2));
-
-    printf("Cross Product:\n");
-    Vector3D cross = v1.crossProduct(&v2);
-    cross.consoleDisplay();
-    printf("\n");
-}

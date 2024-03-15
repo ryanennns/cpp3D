@@ -56,7 +56,7 @@ namespace RendererTests
 		}
 
 		TEST_METHOD(test_it_calculates_cross_product)
-		{
+		{	
 			Vector3D v1 = Vector3D(1, 2, 3);
 			Vector3D v2 = Vector3D(4, 5, 6);
 
