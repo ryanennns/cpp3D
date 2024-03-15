@@ -4,3 +4,7 @@ CudaTest/x64
 CudaTest/.vscode
 cuda3D/cuda3D.vcvxproj
 cuda3D/cuda3D.vcvxproj.filters
+/RendererTests/RendererTests.vcxproj
+/RendererTests/RendererTests.vcxproj.filters
+/RendererTests/RendererTests.vcxproj.user
+/SDL/SDL.vcxproj.user
