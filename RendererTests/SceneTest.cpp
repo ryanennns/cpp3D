@@ -4,6 +4,7 @@
 #include <include/Object.h>
 #include <include/Triangle.h>
 #include <include/Scene.h>
+#include <include/HitDetection.h>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
@@ -45,7 +46,7 @@ namespace RendererTests
 			Scene scene = Scene();
 			scene.addObject(&object);
 
-			vector<Vector3D> intersections = scene.intersections(ray);
+			vector<HitDetection> intersections = scene.intersections(ray);
 
 			Assert::AreEqual(2, (int)intersections.size());
 		}

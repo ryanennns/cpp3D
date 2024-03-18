@@ -5,11 +5,12 @@ using namespace std;
 
 Object::Object()
 {
-
+	this->colour = Rgb(0, 0, 0);
 }
 
 Object::Object(Object& object)
 {
+	this->colour = Rgb(0, 0, 0);
 	for (int i = 0; i < object.surfaces.size(); i++)
 	{
 		this->addSurface(object.surfaces.at(i)->clone());
@@ -30,8 +31,6 @@ vector<Vector3D> Object::intersections(Ray ray)
 
 	for (int i = 0; i < surfaces.size(); i++)
 	{
-		// looks like surfaces.size experiences overflow somehow :(
-		// probably not overflow, but rather a bug in the code (sure copilot thanks)
 		vector<Vector3D> intersects = surfaces.at(i)->intersections(ray);
 		for (int j = 0; j < intersects.size(); j++)
 		{
@@ -53,4 +52,14 @@ void Object::transform(Vector3D translation, Vector3D rotation)
 	{
 		surfaces.at(i)->transform(translation, rotation);
 	}
+}
+
+void Object::setColour(Rgb colour)
+{
+	this->colour = colour;
+}
+
+Rgb Object::getColour()
+{
+	return this->colour;
 }

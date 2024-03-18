@@ -2,6 +2,7 @@
 
 #include "Object.h"
 #include "Light.h"
+#include "HitDetection.h"
 #include <vector>
 
 class Scene
@@ -14,7 +15,7 @@ public:
 	void addLight(Light*);
 	std::vector<Object*> getObjects();
 	std::vector<Light*> getLights();
-	std::vector<Vector3D> intersections(Ray);
+	std::vector<HitDetection> intersections(Ray);
 private:
 	std::vector<Object*> objects;
 	std::vector<Light*> lights;

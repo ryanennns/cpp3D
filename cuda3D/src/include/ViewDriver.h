@@ -5,6 +5,7 @@
 #include "Scene.h"
 #include "ViewPort.h"
 #include "Rgb.h"
+#include "HitDetection.h"
 
 class ViewDriver
 {
@@ -15,5 +16,5 @@ private:
 	Scene* scene;
 	ViewPort viewPort;
 
-	Rgb processLighting(Vector3D);
+	Rgb processLighting(HitDetection);
 };

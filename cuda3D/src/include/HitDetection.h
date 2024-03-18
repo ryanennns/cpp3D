@@ -6,12 +6,14 @@
 class HitDetection
 {
 public:
-	HitDetection(Vector3D, Object*, Rgb);
+	//HitDetection(Vector3D, Object*, Rgb);
+	HitDetection(Vector3D, Rgb);
 
 	Vector3D getHitPoint();
-	Object getHitObject();
+	Rgb getColour();
+	//Object getHitObject();
 private:
 	Vector3D hitPoint;
-	Object hitObject;
+	//Object hitObject;
 	Rgb colour;
 };

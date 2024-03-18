@@ -41,15 +41,21 @@ vector<Light*> Scene::getLights()
 	return this->lights;
 }
 
-vector<Vector3D> Scene::intersections(Ray ray)
+vector<HitDetection> Scene::intersections(Ray ray)
 {
-	vector<Vector3D> intersections;
+	vector<HitDetection> intersections;
 	for (int i = 0; i < this->objects.size(); i++)
 	{
 		vector<Vector3D> objectIntersections = objects.at(i)->intersections(ray);
 		if (objectIntersections.size() > 0)
 		{
-			intersections.push_back(objectIntersections.at(0));
+			intersections.push_back(
+				HitDetection(
+					objectIntersections.at(0),
+					//objects.at(i),
+					objects.at(i)->getColour()
+				)
+			);
 		}
 	}
 	return intersections;

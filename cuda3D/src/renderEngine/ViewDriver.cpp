@@ -1,4 +1,5 @@
 #include <vector>
+#include <algorithm>
 #include "../include/ViewDriver.h"
 #include "../include/Sphere.h"
 #include "../include/Light.h"
@@ -21,7 +22,7 @@ vector<vector<Rgb>> ViewDriver::processFrame()
 		for (int x = 0; x < row.size(); x++)
 		{
 			Ray ray = row.at(x);
-			vector<Vector3D> intersections = scene->intersections(ray);
+			vector<HitDetection> intersections = scene->intersections(ray);
 			if (intersections.size() > 0)
 			{
 				rgbColumn.push_back(processLighting(intersections.at(0)));
@@ -37,7 +38,42 @@ vector<vector<Rgb>> ViewDriver::processFrame()
 	return rgbValues;
 }
 
-Rgb ViewDriver::processLighting(Vector3D intersection)
+Rgb ViewDriver::processLighting(HitDetection intersection)
 {
-	return Rgb(0, 0, 255);
+    Light* light = this->scene->getLights().at(0); // Assuming you're only considering one light for simplicity
+
+    double lightDistance = intersection.getHitPoint().distanceBetween(light->getOrigin());
+    double effectiveIntensity = light->getIntensity() - lightDistance;
+
+    // Defining the dark gray as an example, adjust as needed
+    Rgb darkGray(16, 16, 16); // Dark gray, adjust values as you see fit
+    Rgb white(255, 255, 255); // White
+
+    // Retrieve original color
+    double r = intersection.getColour().getRed();
+    double g = intersection.getColour().getGreen();
+    double b = intersection.getColour().getBlue();
+
+    if (effectiveIntensity >= light->getIntensity()) {
+        // Light is strong enough to make the object appear white
+        return white;
+    }
+    
+    if (effectiveIntensity <= 0) {
+        // Light is too weak, return dark gray
+        return darkGray;
+    }
+
+    // Scale color based on effectiveIntensity
+    double scaleFactor = effectiveIntensity / light->getIntensity();
+    r = darkGray.getRed() + (r - darkGray.getRed()) * scaleFactor;
+    g = darkGray.getGreen() + (g - darkGray.getGreen()) * scaleFactor;
+    b = darkGray.getBlue() + (b - darkGray.getBlue()) * scaleFactor;
+
+    // Clamp RGB values to ensure they are within the valid range [0, 255]
+    r = std::min(std::max(r, 0.0), 255.0);
+    g = std::min(std::max(g, 0.0), 255.0);
+    b = std::min(std::max(b, 0.0), 255.0);
+
+    return Rgb(r, g, b);
 }

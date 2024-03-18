@@ -2,10 +2,16 @@
 #include "../include/Vector3D.h"
 #include "../include/Object.h"
 
-HitDetection::HitDetection(Vector3D vector, Object* object, Rgb colour)
+//HitDetection::HitDetection(Vector3D hitPoint, Object* object, Rgb colour)
+//{
+//	this->hitPoint = hitPoint;
+//	this->hitObject = Object(*object);
+//	this->colour = colour;
+//}
+
+HitDetection::HitDetection(Vector3D hitPoint, Rgb colour)
 {
-	this->hitPoint = vector;
-	this->hitObject = Object(*object);
+	this->hitPoint = hitPoint;
 	this->colour = colour;
 }
 
@@ -14,7 +20,12 @@ Vector3D HitDetection::getHitPoint()
 	return this->hitPoint;
 }
 
-Object HitDetection::getHitObject()
+Rgb HitDetection::getColour()
 {
-	return this->hitObject;
+	return this->colour;
 }
+
+//Object HitDetection::getHitObject()
+//{
+//	return this->hitObject;
+//}

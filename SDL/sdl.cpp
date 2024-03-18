@@ -14,8 +14,8 @@
 #include "ViewDriver.h"
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 480;
-const int SCREEN_HEIGHT = 360;
+const int SCREEN_WIDTH = 300;
+const int SCREEN_HEIGHT = 200;
 
 void set_pixel(SDL_Surface* surface, int x, int y, Rgb& color)
 {
@@ -64,13 +64,40 @@ int main(int argc, char* args[])
 			Object* object = new Object();
 			object->addSurface(
 				new Triangle(
-					Vector3D(-1.5, 1, 3),
-					Vector3D(1, -1.5, 3),
+					Vector3D(0, 0, 2),
+					Vector3D(-1, -1, 3),
+					Vector3D(-1, 1, 3)
+				)
+			);
+
+			object->addSurface(
+				new Triangle(
+					Vector3D(0, 0, 2),
+					Vector3D(1, 1, 3),
+					Vector3D(1, -1, 3)
+				)
+			);
+
+			object->addSurface(
+				new Triangle(
+					Vector3D(0, 0, 2),
+					Vector3D(-1, 1, 3),
 					Vector3D(1, 1, 3)
-				));
-			object->addSurface(new Sphere(Vector3D(8, 8, 10), 1));
+				)
+			);
+
+			object->addSurface(
+				new Triangle(
+					Vector3D(0, 0, 2),
+					Vector3D(1, -1, 3),
+					Vector3D(-1, -1, 3)
+				)
+			);
+
+			object->setColour(Rgb(255, 0, 0));
 
 			scene->addObject(object);
+			scene->addLight(new Light(Vector3D(0, 3, 3), 5.0));
 
 			ViewPort viewPort = ViewPort(SCREEN_WIDTH, SCREEN_HEIGHT);
 
