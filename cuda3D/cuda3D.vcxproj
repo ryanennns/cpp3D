@@ -82,6 +82,7 @@
     <CudaCompile Include="kernel.cu" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\components\HitDetection.cpp" />
     <ClCompile Include="src\components\Ray.cpp" />
     <ClCompile Include="src\components\Vector3D.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -96,6 +97,7 @@
     <ClCompile Include="src\renderEngine\ViewPort.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\include\HitDetection.h" />
     <ClInclude Include="src\include\Light.h" />
     <ClInclude Include="src\include\Object.h" />
     <ClInclude Include="src\include\Ray.h" />

@@ -70,5 +70,16 @@ namespace RendererTests
 			Assert::AreEqual(-2.97, std::round(evaluateTwo.y * 100) / 100.0);
 			Assert::AreEqual(-7.22, std::round(evaluateTwo.z * 100) / 100.0);
 		}
+		
+		TEST_METHOD(test_it_clones_a_sphere)
+		{
+			Sphere sphere = Sphere(Vector3D(0, 0, 0), 1);
+			Surface* clonedSphere = sphere.clone();
+
+			Assert::IsFalse((Surface*)&sphere == clonedSphere);
+			Assert::AreEqual(sphere.getCenter().x, ((Sphere*)clonedSphere)->getCenter().x);
+			Assert::AreEqual(sphere.getCenter().y, ((Sphere*)clonedSphere)->getCenter().y);
+			Assert::AreEqual(sphere.getCenter().z, ((Sphere*)clonedSphere)->getCenter().z);
+		}
 	};
 }

@@ -2,7 +2,8 @@
 #include "../../include/Vector3D.h"
 #include "../../include/Ray.h"
 
-Triangle::Triangle(Vector3D A, Vector3D B, Vector3D C) {
+Triangle::Triangle(Vector3D A, Vector3D B, Vector3D C)
+{
 	this->A = A;
 	this->B = B;
 	this->C = C;
@@ -23,6 +24,11 @@ Vector3D Triangle::getC()
 	return this->C;
 }
 
+Rgb Triangle::getColour()
+{
+	return this->colour;
+}
+
 void Triangle::setA(Vector3D A)
 {
 	this->A = A;
@@ -36,6 +42,11 @@ void Triangle::setB(Vector3D B)
 void Triangle::setC(Vector3D C)
 {
 	this->C = C;
+}
+
+void Triangle::setColour(Rgb colour)
+{
+	this->colour = colour;
 }
 
 Vector3D Triangle::getNormal()
@@ -97,4 +108,9 @@ void Triangle::transform(Vector3D translation, Vector3D rotation)
 	this->A = this->A.add(translation);
 	this->B = this->B.add(translation);
 	this->C = this->C.add(translation);
+}
+
+Surface* Triangle::clone() const
+{
+	return new Triangle(*this);
 }

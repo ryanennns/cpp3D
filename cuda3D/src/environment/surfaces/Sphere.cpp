@@ -17,6 +17,12 @@ Sphere::Sphere(const Vector3D& center, double radius)
 	this->radius = radius;
 }
 
+Sphere::Sphere(const Sphere& sphere)
+{
+	this->center = Vector3D(sphere.center);
+	this->radius = sphere.radius;
+}
+
 Vector3D Sphere::getCenter()
 {
 	return this->center;
@@ -25,6 +31,16 @@ Vector3D Sphere::getCenter()
 double Sphere::getRadius()
 {
 	return this->radius;
+}
+
+Rgb Sphere::getColour()
+{
+	return this->colour;
+}
+
+void Sphere::setColour(Rgb colour)
+{
+	this->colour = colour;
 }
 
 std::vector<Vector3D> Sphere::intersections(Ray ray)
@@ -73,4 +89,9 @@ double Sphere::intersectDiscriminant(Ray ray)
 void Sphere::transform(Vector3D translation, Vector3D rotation)
 {
 	this->center = this->center.add(translation);
+}
+
+Surface* Sphere::clone() const
+{
+	return new Sphere(*this);
 }

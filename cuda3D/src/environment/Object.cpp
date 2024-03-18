@@ -8,6 +8,14 @@ Object::Object()
 
 }
 
+Object::Object(Object& object)
+{
+	for (int i = 0; i < object.surfaces.size(); i++)
+	{
+		this->addSurface(object.surfaces.at(i)->clone());
+	}
+}
+
 Object::~Object()
 {
 	for (int i = 0; i < surfaces.size(); i++)
@@ -22,8 +30,8 @@ vector<Vector3D> Object::intersections(Ray ray)
 
 	for (int i = 0; i < surfaces.size(); i++)
 	{
-		// todo this throws an exception when using a scene
-		Surface* surface = surfaces.at(i);
+		// looks like surfaces.size experiences overflow somehow :(
+		// probably not overflow, but rather a bug in the code (sure copilot thanks)
 		vector<Vector3D> intersects = surfaces.at(i)->intersections(ray);
 		for (int j = 0; j < intersects.size(); j++)
 		{

@@ -9,11 +9,11 @@
 class ViewDriver
 {
 public:
-	ViewDriver(Scene, ViewPort);
+	ViewDriver(Scene*, ViewPort);
+	vector<vector<Rgb>> processFrame();
 private:
-	Scene scene;
+	Scene* scene;
 	ViewPort viewPort;
 
-	vector<vector<Rgb>> processFrame();
 	Rgb processLighting(Vector3D);
 };

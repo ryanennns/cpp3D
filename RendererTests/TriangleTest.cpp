@@ -116,5 +116,21 @@ namespace RendererTests
 		{
 			Assert::AreEqual("", "TODO");
 		}
+
+		TEST_METHOD(test_it_clones_triangle)
+		{
+			Triangle triangle = Triangle(
+				Vector3D(5, 0, 3),
+				Vector3D(-5, 5, 3),
+				Vector3D(-5, -5, 3)
+			);
+
+			Surface* clonedTriangle = triangle.clone();
+
+			Assert::IsFalse(&triangle == clonedTriangle);
+			Assert::AreEqual(triangle.getA().x, ((Triangle*)clonedTriangle)->getA().x);
+			Assert::AreEqual(triangle.getA().y, ((Triangle*)clonedTriangle)->getA().y);
+			Assert::AreEqual(triangle.getA().z, ((Triangle*)clonedTriangle)->getA().z);
+		}
 	};
 }

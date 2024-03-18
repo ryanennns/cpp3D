@@ -12,12 +12,12 @@ Scene::~Scene()
 {
 	for (int i = 0; i < this->objects.size(); i++)
 	{
-		delete this->objects.at(i);
+		//delete this->objects.at(i);
 	}
 
 	for (int i = 0; i < this->lights.size(); i++)
 	{
-		delete this->lights.at(i);
+		//delete this->lights.at(i);
 	}
 }
 

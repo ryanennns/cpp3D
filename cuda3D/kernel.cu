@@ -12,6 +12,7 @@
 #include "./src/include/ViewDriver.h"
 #include "./src/include/ViewPort.h"
 #include "./src/include/Light.h"
+#include "./src/include/HitDetection.h"
 
 int main()
 {

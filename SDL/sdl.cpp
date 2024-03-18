@@ -11,16 +11,24 @@
 #include "Triangle.h"
 #include "Object.h"
 #include "Scene.h"
+#include "ViewDriver.h"
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 480;
+const int SCREEN_HEIGHT = 360;
 
-void set_pixel(SDL_Surface* surface, int x, int y, Uint32 color)
+void set_pixel(SDL_Surface* surface, int x, int y, Rgb& color)
 {
 	if (x >= 0 && x < surface->w && y >= 0 && y < surface->h) {
 		Uint32* pixels = (Uint32*)surface->pixels;
-		pixels[(y * surface->w) + x] = color;
+		Uint32 pixelColor = SDL_MapRGB(
+			surface->format,
+			color.getRed(),
+			color.getGreen(),
+			color.getBlue()
+		);
+
+		pixels[(y * surface->w) + x] = pixelColor;
 	}
 }
 
@@ -51,7 +59,7 @@ int main(int argc, char* args[])
 			screenSurface = SDL_GetWindowSurface(window);
 
 			Uint32 staticColor = SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF);
-			Scene scene = Scene();
+			Scene* scene = new Scene();
 
 			Object* object = new Object();
 			object->addSurface(
@@ -59,28 +67,21 @@ int main(int argc, char* args[])
 					Vector3D(-1.5, 1, 3),
 					Vector3D(1, -1.5, 3),
 					Vector3D(1, 1, 3)
-				)
-			);
-			object->addSurface(
-				new Sphere(Vector3D(8, 8, 10), 1)
-			);
+				));
+			object->addSurface(new Sphere(Vector3D(8, 8, 10), 1));
 
-			scene.addObject(object);
-
-			scene.getObjects().at(0);
+			scene->addObject(object);
 
 			ViewPort viewPort = ViewPort(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-			vector<vector<Ray>> rays = viewPort.getRays();
+			ViewDriver viewDriver = ViewDriver(scene, viewPort);
+			vector<vector<Rgb>> rgbValues = viewDriver.processFrame();
 
 			for (int y = 0; y < SCREEN_HEIGHT; ++y)
 			{
 				for (int x = 0; x < SCREEN_WIDTH; ++x)
 				{
-					if (scene.intersections(rays.at(y).at(x)).size() > 0)
-					{
-						set_pixel(screenSurface, x, y, staticColor);
-					}
+					set_pixel(screenSurface, x, y, rgbValues.at(y).at(x));
 				}
 			}
 

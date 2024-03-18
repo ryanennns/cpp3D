@@ -10,6 +10,7 @@ class Object
 {
 public:
 	Object();
+	Object(Object&);
 	~Object();
 	std::vector<Vector3D> intersections(Ray ray);
 	void addSurface(Surface* surface);
