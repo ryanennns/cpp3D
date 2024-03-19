@@ -44,17 +44,21 @@ Rgb ViewDriver::processLighting(HitDetection intersection)
 	Light* light = this->scene->getLights().at(0);
 	Vector3D normal = intersection.getNormal().normalize();
 	Vector3D hitPoint = intersection.getHitPoint();
-	Rgb objectColor = intersection.getColour(); 
-
-	// todo implement ambient light shade for individual objects
-	Rgb ambient = Rgb(0,0,0);
-
+	Vector3D viewDirection = this->viewPort.getEye().subtract(hitPoint).normalize();
 	Vector3D lightDirection = light->getOrigin().subtract(hitPoint).normalize();
+	Rgb objectColor = intersection.getColour();
 
-	double diff = std::fabs(normal.dotProduct(lightDirection)); // returns 0 for all triangles
+	Vector3D reflectDirection = this->reflect(lightDirection.negative(), normal).normalize();
+	double spec = std::pow(std::max(viewDirection.dotProduct(reflectDirection), 0.0), 16);
+	Rgb specular = (Rgb(200,200,200) + objectColor * 0.01) * 0.7 * spec;
+
+	// todo not ambient pure black
+	Rgb ambient = Rgb(0, 0, 0);
+
+	double diff = std::fabs(normal.dotProduct(lightDirection));
 	Rgb diffuse = objectColor * diff;
 
-	Rgb combinedLight = (ambient + diffuse);
+	Rgb combinedLight = (ambient + diffuse + specular);
 
 	if (this->isInShadow(intersection, light))
 	{
@@ -69,4 +73,11 @@ bool ViewDriver::isInShadow(HitDetection intersection, Light* light)
 	Ray intersectionToLight = Ray(intersection.getHitPoint(), light->getOrigin());
 	vector<HitDetection> sceneIntersections = this->scene->intersections(intersectionToLight);
 	return sceneIntersections.size() > 0;
+}
+
+Vector3D ViewDriver::reflect(Vector3D incident, Vector3D normal)
+{
+	incident = incident.normalize();
+	normal = normal.normalize();
+	return incident.subtract(normal.multiply(2.0 * incident.dotProduct(normal)));
 }

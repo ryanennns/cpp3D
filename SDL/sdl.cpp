@@ -54,7 +54,7 @@ int main(int argc, char* args[])
 			Uint32 staticColor = SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF);
 			Scene* scene = new Scene();
 
-			Object* sphere2 = new Object();
+			Object* sphere2 = new Object();	
 			sphere2->addSurface(new Sphere(Vector3D(-0.5, -0.5, 1.5), 0.1));
 			sphere2->setColour(Rgb(251, 182, 209));
 			scene->addObject(sphere2);
@@ -63,7 +63,6 @@ int main(int argc, char* args[])
 			object->addSurface(new Sphere(Vector3D(-1, -1, 2), 0.4));
 			object->setColour(Rgb(251, 182, 209));
 			scene->addObject(object);
-
 			Object* sphere = new Object();
 			sphere->addSurface(new Sphere(Vector3D(1, 0, 2), 0.3));
 			sphere->setColour(Rgb(133, 209, 93));
@@ -83,8 +82,7 @@ int main(int argc, char* args[])
 			//triangle->setColour(Rgb(255, 0, 0));
 			//scene->addObject(triangle);
 
-
-			scene->addLight(new Light(Vector3D(0, 0, 1)));
+			scene->addLight(new Light(Vector3D(1, 0, 1)));
 
 			ViewPort viewPort = ViewPort(SCREEN_WIDTH, SCREEN_HEIGHT);
 

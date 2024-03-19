@@ -48,6 +48,14 @@ void Rgb::setBlue(unsigned char value)
 
 Rgb Rgb::operator*(double scalar)
 {
+	if (this->r * scalar > 255 ||
+		this->g * scalar > 255 ||
+		this->b * scalar > 255)
+	{
+		printf("error: scalar value is too high\n");
+		printf("r: %lf, g: %lf, b: %lf\n", this->r * scalar, this->g * scalar, this->b * scalar);
+	}
+
 	return Rgb(
 		(unsigned char)(this->r * scalar),
 		(unsigned char)(this->g * scalar),
@@ -77,9 +85,9 @@ Rgb Rgb::operator*(Rgb other)
 Rgb Rgb::operator+(Rgb other)
 {
 	return Rgb(
-		(unsigned char)(this->r + other.r),
-		(unsigned char)(this->g + other.g),
-		(unsigned char)(this->b + other.b)
+		(unsigned char)std::min((this->r + other.r), 255),
+		(unsigned char)std::min((this->g + other.g), 255),
+		(unsigned char)std::min((this->b + other.b), 255)
 	);
 }
 

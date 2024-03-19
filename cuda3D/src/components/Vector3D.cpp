@@ -97,3 +97,12 @@ void Vector3D::consoleDisplay()
 {
     printf("(%lf, %lf, %lf)\n", this->x, this->y, this->z);
 }
+
+Vector3D Vector3D::negative()
+{
+    return Vector3D(
+		-this->x,
+		-this->y,
+		-this->z
+	);
+}

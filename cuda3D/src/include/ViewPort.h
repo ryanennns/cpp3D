@@ -18,4 +18,5 @@ public:
 	ViewPort(Vector3D eye, double width = 400, double height = 800);
 
 	vector<vector<Ray>> getRays();
+	Vector3D getEye();
 };

@@ -18,5 +18,5 @@ private:
 	Scene* scene;
 	ViewPort viewPort;
 
-	Rgb diffuse(HitDetection);
+	Vector3D reflect(Vector3D, Vector3D);
 };
