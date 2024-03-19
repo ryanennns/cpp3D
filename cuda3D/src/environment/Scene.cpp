@@ -59,7 +59,8 @@ vector<HitDetection> Scene::intersections(Ray ray)
 					HitDetection(
 						intersection.getHitPoint(),
 						intersection.getNormal(),
-						intersection.getColour()
+						intersection.getColour(),
+						intersection.getSpecularCoefficient()
 					)
 				);
 			}

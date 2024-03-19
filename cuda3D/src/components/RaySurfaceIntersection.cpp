@@ -2,11 +2,16 @@
 #include "../include/Vector3D.h"
 #include "../include/Rgb.h"
 
-RaySurfaceIntersection::RaySurfaceIntersection(Vector3D hitPoint, Vector3D surfaceNormal, Rgb colour)
+RaySurfaceIntersection::RaySurfaceIntersection(
+	Vector3D hitPoint,
+	Vector3D surfaceNormal, 
+	Rgb colour,
+	double specularCoefficent)
 {
 	this->hitPoint = hitPoint;
 	this->surfaceNormal = surfaceNormal;
 	this->colour = colour;
+	this->specularCoefficient = specularCoefficent;
 }
 
 Vector3D RaySurfaceIntersection::getHitPoint()
@@ -22,4 +27,9 @@ Vector3D RaySurfaceIntersection::getNormal()
 Rgb RaySurfaceIntersection::getColour()
 {
 	return this->colour;
+}
+
+double RaySurfaceIntersection::getSpecularCoefficient()
+{
+	return this->specularCoefficient;
 }

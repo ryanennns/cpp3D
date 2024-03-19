@@ -10,6 +10,7 @@ Triangle::Triangle(Vector3D A, Vector3D B, Vector3D C)
 	this->B = B;
 	this->C = C;
 	this->colour = Rgb(128, 0, 0);
+	this->specularCoefficient = 2;
 }
 
 Triangle::Triangle(Vector3D A, Vector3D B, Vector3D C, Rgb colour)
@@ -18,6 +19,16 @@ Triangle::Triangle(Vector3D A, Vector3D B, Vector3D C, Rgb colour)
 	this->B = B;
 	this->C = C;
 	this->colour = colour;
+	this->specularCoefficient = 2;
+}
+
+Triangle::Triangle(Vector3D A, Vector3D B, Vector3D C, Rgb colour, double specularCoefficient)
+{
+	this->A = A;
+	this->B = B;
+	this->C = C;
+	this->colour = colour;
+	this->specularCoefficient = specularCoefficient;
 }
 
 Vector3D Triangle::getA()
@@ -139,4 +150,9 @@ bool Triangle::verifyIntersection(Vector3D a, Vector3D b)
 Vector3D Triangle::getNormal(Vector3D point)
 {
 	return this->normal();
+}
+
+double Triangle::getSpecularCoefficient()
+{
+	return this->specularCoefficient;
 }

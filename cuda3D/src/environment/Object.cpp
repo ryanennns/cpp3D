@@ -36,8 +36,14 @@ vector<RaySurfaceIntersection> Object::intersections(Ray ray)
 		for (int j = 0; j < intersects.size(); j++)
 		{
 			Vector3D intersection = intersects.at(j);
+			Surface* surface = surfaces.at(i);
 			returnVector.push_back(
-				RaySurfaceIntersection(intersection, surfaces.at(i)->getNormal(intersection), surfaces.at(i)->getColour())
+				RaySurfaceIntersection(
+					intersection,
+					surface->getNormal(intersection),
+					surface->getColour(),
+					surface->getSpecularCoefficient()
+				)
 			);
 		}
 	}

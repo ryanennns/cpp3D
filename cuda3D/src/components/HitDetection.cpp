@@ -2,18 +2,12 @@
 #include "../include/Vector3D.h"
 #include "../include/Object.h"
 
-//HitDetection::HitDetection(Vector3D hitPoint, Object* object, Rgb colour)
-//{
-//	this->hitPoint = hitPoint;
-//	this->hitObject = Object(*object);
-//	this->colour = colour;
-//}
-
-HitDetection::HitDetection(Vector3D hitPoint, Vector3D surfaceNormal, Rgb colour)
+HitDetection::HitDetection(Vector3D hitPoint, Vector3D surfaceNormal, Rgb colour, double specularCoefficent)
 {
 	this->hitPoint = hitPoint;
 	this->surfaceNormal = surfaceNormal;
 	this->colour = colour;
+	this->specularCoefficient = specularCoefficent;
 }
 
 Vector3D HitDetection::getHitPoint()
@@ -31,7 +25,12 @@ Vector3D HitDetection::getNormal()
 	return this->surfaceNormal;
 }
 
-//Object HitDetection::getHitObject()
-//{
-//	return this->hitObject;
-//}
+double HitDetection::getSpecularCoefficient()
+{
+	return this->specularCoefficient;
+}
+
+void HitDetection::setSpecularCoefficient(double specularCoefficient)
+{
+	this->specularCoefficient = specularCoefficient;
+}

@@ -9,12 +9,16 @@ Sphere::Sphere()
 {
 	this->center = Vector3D(0,0,0);
 	this->radius = 1;
+	this->colour = Rgb(0, 0, 0);
+	this->specularCoefficient = 2;
 }
 
 Sphere::Sphere(const Vector3D& center, double radius)
 {
 	this->center = Vector3D(center);
 	this->radius = radius;
+	this->colour = Rgb(0, 0, 0);
+	this->specularCoefficient = 2;
 }
 
 Sphere::Sphere(const Vector3D& center, double radius, Rgb colour)
@@ -22,12 +26,23 @@ Sphere::Sphere(const Vector3D& center, double radius, Rgb colour)
 	this->center = Vector3D(center);
 	this->radius = radius;
 	this->colour = colour;
+	this->specularCoefficient = 2;
 }
 
 Sphere::Sphere(const Sphere& sphere)
 {
 	this->center = Vector3D(sphere.center);
 	this->radius = sphere.radius;
+	this->colour = sphere.colour;
+	this->specularCoefficient = sphere.specularCoefficient;
+}
+
+Sphere::Sphere(const Vector3D& center, double radius, Rgb colour, double specularCoefficient)
+{
+	this->center = Vector3D(center);
+	this->radius = radius;
+	this->colour = colour;
+	this->specularCoefficient = specularCoefficient;
 }
 
 Vector3D Sphere::getCenter()
@@ -135,4 +150,9 @@ bool Sphere::verifyIntersection(Vector3D a, Vector3D b)
 Vector3D Sphere::getNormal(Vector3D point)
 {
 	return point.subtract(this->center).normalize();
+}
+
+double Sphere::getSpecularCoefficient()
+{
+	return this->specularCoefficient;
 }

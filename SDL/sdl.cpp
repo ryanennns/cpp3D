@@ -76,28 +76,37 @@ int main(int argc, char* args[])
 				Vector3D(2, 2, 3),
 				Vector3D(-2, 2, 3),
 				Vector3D(-2, 0, 4),
-				Rgb(255, 100, 0)
+				Rgb(255, 100, 0),
+				1.01
 			));
 			triangle->addSurface(new Triangle(
 				Vector3D(2, 2, 3),
 				Vector3D(-2, 0, 4),
 				Vector3D(2, 0, 4),
-				Rgb(0,255,100)
+				Rgb(0,255,100),
+				1.01
 			));
 			triangle->addSurface(new Triangle(
 				Vector3D(2, -1, 6),
 				Vector3D(-2, 0, 4),
 				Vector3D(2, 0, 4),
-				Rgb(0, 100, 255)
+				Rgb(0, 100, 255),
+				1.01
 			));
 			triangle->addSurface(new Triangle(
 				Vector3D(2, -1, 6),
 				Vector3D(-2, 0, 4),
 				Vector3D(-2, -1, 6),
-				Rgb(255, 0, 255)
+				Rgb(255, 0, 255),
+				1.01
 			));
 			Object* sphere = new Object();
-			sphere->addSurface(new Sphere(Vector3D(0, -1, 3.75), 0.5, Rgb(100,200,255)));
+			sphere->addSurface(new Sphere(
+				Vector3D(0, -1, 3.75),
+				0.5,
+				Rgb(100,200,255),
+				16
+			));
 			sphere->setColour(Rgb(209, 133, 93));
 			scene->addObject(sphere);
 			scene->addObject(triangle);

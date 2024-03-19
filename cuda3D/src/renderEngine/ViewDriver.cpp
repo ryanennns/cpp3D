@@ -39,6 +39,25 @@ vector<vector<Rgb>> ViewDriver::processFrame()
 	return rgbValues;
 }
 
+Rgb ViewDriver::getSpecular(Vector3D& lightDirection, Vector3D& normal, Vector3D& viewDirection, Rgb& objectColor, double specularCoefficient)
+{
+	Vector3D reflectDirection = this->reflect(lightDirection.negative(), normal).normalize();
+	double spec = std::pow(std::max(viewDirection.dotProduct(reflectDirection), 0.0), specularCoefficient);
+	return (Rgb(200, 200, 200) + objectColor * 0.01) * 0.7 * spec;
+}
+
+Rgb ViewDriver::getAmbient()
+{
+	// Assuming ambient light is constant for this example, otherwise, parameters can be added as needed
+	return Rgb(0, 0, 0); // Placeholder for ambient light calculation
+}
+
+Rgb ViewDriver::getDiffuse(Vector3D& normal, Vector3D& lightDirection, Rgb& objectColor)
+{
+	double diff = std::fabs(normal.dotProduct(lightDirection));
+	return objectColor * diff;
+}
+
 Rgb ViewDriver::processLighting(HitDetection intersection)
 {
 	Light* light = this->scene->getLights().at(0);
@@ -48,24 +67,16 @@ Rgb ViewDriver::processLighting(HitDetection intersection)
 	Vector3D lightDirection = light->getOrigin().subtract(hitPoint).normalize();
 	Rgb objectColor = intersection.getColour();
 
-	Vector3D reflectDirection = this->reflect(lightDirection.negative(), normal).normalize();
-	double spec = std::pow(std::max(viewDirection.dotProduct(reflectDirection), 0.0), 2);
-	Rgb specular = (Rgb(200,200,200) + objectColor * 0.01) * 0.7 * spec;
+	Rgb specular = this->getSpecular(lightDirection, normal, viewDirection, objectColor, intersection.getSpecularCoefficient());
+	Rgb ambient = this->getAmbient();
+	Rgb diffuse = this->getDiffuse(normal, lightDirection, objectColor);
 
-	Rgb ambient = Rgb(0, 0, 0);
-
-	double diff = std::fabs(normal.dotProduct(lightDirection));
-	Rgb diffuse = objectColor * diff;
-
-	Rgb combinedLight = (ambient + diffuse);
+	Rgb combinedLight = ambient + diffuse;
 
 	if (this->isInShadow(intersection, light))
-	{
-		//return Rgb(32, 32, 32);
+{
 		return combinedLight * 0.15;
 	}
-
-	//return objectColor;
 
 	combinedLight = combinedLight + specular;
 

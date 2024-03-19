@@ -11,6 +11,7 @@ class Sphere : public Surface
 private:
 	Vector3D center;
 	double radius;
+	double specularCoefficient;
 
 	double intersectDiscriminant(Ray);
 public:
@@ -19,6 +20,7 @@ public:
 	Sphere();
 	Sphere(const Vector3D&, double);
 	Sphere(const Vector3D&, double, Rgb);
+	Sphere(const Vector3D&, double, Rgb, double);
 	Sphere(const Sphere&);
 
 	Vector3D getCenter();
@@ -33,4 +35,6 @@ public:
 
 	bool verifyIntersection(Vector3D, Vector3D) override;
 	Vector3D getNormal(Vector3D) override;
+
+	double getSpecularCoefficient() override;
 };
