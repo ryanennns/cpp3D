@@ -18,4 +18,5 @@ public:
 	Rgb operator*(double);
 	Rgb operator*(Rgb);
 	Rgb operator+(Rgb);
+	Rgb operator-(Rgb);
 };

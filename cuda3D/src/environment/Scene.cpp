@@ -47,7 +47,7 @@ vector<Light*> Scene::getLights()
 vector<HitDetection> Scene::intersections(Ray ray)
 {
 	vector<HitDetection> intersections;
-	for (int i = 0; i < this->objects.size(); i++)
+	for (int i = 0; i < objects.size(); i++)
 	{
 		vector<RaySurfaceIntersection> objectIntersections = objects.at(i)->intersections(ray);
 		if (objectIntersections.size() > 0)
@@ -59,7 +59,7 @@ vector<HitDetection> Scene::intersections(Ray ray)
 					HitDetection(
 						intersection.getHitPoint(),
 						intersection.getNormal(),
-						this->objects.at(i)->getColour()
+						objects.at(i)->getColour()
 					)
 				);
 			}

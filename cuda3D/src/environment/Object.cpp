@@ -6,7 +6,7 @@ using namespace std;
 
 Object::Object()
 {
-	this->colour = Rgb(0, 0, 0);
+	this->colour = Rgb(0, 255, 0);
 }
 
 Object::Object(Object& object)

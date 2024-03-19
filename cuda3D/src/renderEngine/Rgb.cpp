@@ -1,4 +1,6 @@
 #include "../include/Rgb.h"
+#include <algorithm>
+#include "stdio.h"
 
 Rgb::Rgb()
 {
@@ -55,10 +57,20 @@ Rgb Rgb::operator*(double scalar)
 
 Rgb Rgb::operator*(Rgb other)
 {
+	if (
+		(this->r * other.r) > 255 ||
+		(this->g * other.g) > 255 ||
+		(this->b * other.b) > 255
+		)
+	{
+		printf("error: scalar value is too high\n");
+		printf("r: %d, g: %d, b: %d\n", this->r * other.r, this->g * other.g, this->b * other.b);
+	}
+
 	return Rgb(
-		(unsigned char)(this->r * other.r),
-		(unsigned char)(this->g * other.g),
-		(unsigned char)(this->b * other.b)
+		(unsigned char)(this->r * other.r), // , 255.0),
+		(unsigned char)(this->g * other.g), // , 255.0),
+		(unsigned char)(this->b * other.b) // , 255.0)
 	);
 }
 
@@ -68,5 +80,14 @@ Rgb Rgb::operator+(Rgb other)
 		(unsigned char)(this->r + other.r),
 		(unsigned char)(this->g + other.g),
 		(unsigned char)(this->b + other.b)
+	);
+}
+
+Rgb Rgb::operator-(Rgb other)
+{
+	return Rgb(
+		(unsigned char)std::min((this->r - other.r), 0),
+		(unsigned char)std::min((this->g - other.g), 0),
+		(unsigned char)std::min((this->b - other.b), 0)
 	);
 }

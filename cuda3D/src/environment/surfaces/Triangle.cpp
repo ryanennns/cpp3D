@@ -9,6 +9,7 @@ Triangle::Triangle(Vector3D A, Vector3D B, Vector3D C)
 	this->A = A;
 	this->B = B;
 	this->C = C;
+	this->colour = Rgb(128, 0, 0);
 }
 
 Vector3D Triangle::getA()
