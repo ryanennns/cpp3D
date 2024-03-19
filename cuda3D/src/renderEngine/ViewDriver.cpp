@@ -29,7 +29,7 @@ vector<vector<Rgb>> ViewDriver::processFrame()
 			}
 			else
 			{
-				rgbColumn.push_back(Rgb(0, 0, 0));
+				rgbColumn.push_back(Rgb(12, 12, 12));
 			}
 		}
 		rgbValues.push_back(rgbColumn);
@@ -40,40 +40,21 @@ vector<vector<Rgb>> ViewDriver::processFrame()
 
 Rgb ViewDriver::processLighting(HitDetection intersection)
 {
-    Light* light = this->scene->getLights().at(0); // Assuming you're only considering one light for simplicity
+    Light* light = this->scene->getLights().at(0); 
 
-    double lightDistance = intersection.getHitPoint().distanceBetween(light->getOrigin());
-    double effectiveIntensity = light->getIntensity() - lightDistance;
+	Rgb returnRgb = intersection.getColour();
+	
+	if (this->isInShadow(intersection, light))
+	{
+		returnRgb = Rgb(32, 32, 32);
+	}
 
-    // Defining the dark gray as an example, adjust as needed
-    Rgb darkGray(16, 16, 16); // Dark gray, adjust values as you see fit
-    Rgb white(255, 255, 255); // White
+    return returnRgb;
+}
 
-    // Retrieve original color
-    double r = intersection.getColour().getRed();
-    double g = intersection.getColour().getGreen();
-    double b = intersection.getColour().getBlue();
-
-    if (effectiveIntensity >= light->getIntensity()) {
-        // Light is strong enough to make the object appear white
-        return white;
-    }
-    
-    if (effectiveIntensity <= 0) {
-        // Light is too weak, return dark gray
-        return darkGray;
-    }
-
-    // Scale color based on effectiveIntensity
-    double scaleFactor = effectiveIntensity / light->getIntensity();
-    r = darkGray.getRed() + (r - darkGray.getRed()) * scaleFactor;
-    g = darkGray.getGreen() + (g - darkGray.getGreen()) * scaleFactor;
-    b = darkGray.getBlue() + (b - darkGray.getBlue()) * scaleFactor;
-
-    // Clamp RGB values to ensure they are within the valid range [0, 255]
-    r = std::min(std::max(r, 0.0), 255.0);
-    g = std::min(std::max(g, 0.0), 255.0);
-    b = std::min(std::max(b, 0.0), 255.0);
-
-    return Rgb(r, g, b);
+bool ViewDriver::isInShadow(HitDetection intersection, Light* light)
+{
+	Ray intersectionToLight = Ray(intersection.getHitPoint(), light->getOrigin());
+	vector<HitDetection> sceneIntersections = this->scene->intersections(intersectionToLight);
+	return sceneIntersections.size() > 0;
 }

@@ -1,4 +1,3 @@
-//Using SDL and standard IO
 #include <SDL.h>
 #include <stdio.h>
 #include <vector>
@@ -13,9 +12,8 @@
 #include "Scene.h"
 #include "ViewDriver.h"
 
-//Screen dimension constants
-const int SCREEN_WIDTH = 300;
-const int SCREEN_HEIGHT = 200;
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 800;
 
 void set_pixel(SDL_Surface* surface, int x, int y, Rgb& color)
 {
@@ -34,20 +32,16 @@ void set_pixel(SDL_Surface* surface, int x, int y, Rgb& color)
 
 int main(int argc, char* args[])
 {
-	//The window we'll be rendering to
 	SDL_Window* window = NULL;
 
-	//The surface contained by the window
 	SDL_Surface* screenSurface = NULL;
 
-	//Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
 	}
 	else
 	{
-		//Create window
 		window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (window == NULL)
 		{
@@ -55,49 +49,26 @@ int main(int argc, char* args[])
 		}
 		else
 		{
-			//Get window surface
 			screenSurface = SDL_GetWindowSurface(window);
 
 			Uint32 staticColor = SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF);
 			Scene* scene = new Scene();
 
 			Object* object = new Object();
-			object->addSurface(
-				new Triangle(
-					Vector3D(0, 0, 2),
-					Vector3D(-1, -1, 3),
-					Vector3D(-1, 1, 3)
-				)
-			);
-
-			object->addSurface(
-				new Triangle(
-					Vector3D(0, 0, 2),
-					Vector3D(1, 1, 3),
-					Vector3D(1, -1, 3)
-				)
-			);
-
-			object->addSurface(
-				new Triangle(
-					Vector3D(0, 0, 2),
-					Vector3D(-1, 1, 3),
-					Vector3D(1, 1, 3)
-				)
-			);
-
-			object->addSurface(
-				new Triangle(
-					Vector3D(0, 0, 2),
-					Vector3D(1, -1, 3),
-					Vector3D(-1, -1, 3)
-				)
-			);
-
+			object->addSurface(new Sphere(Vector3D(-2, 0, 5.15), 0.3));
 			object->setColour(Rgb(255, 0, 0));
 
+			Object* triangle = new Object();
+			triangle->setColour(Rgb(0, 255, 64));
+			triangle->addSurface(new Triangle(
+				Vector3D(2.47, -0.87, 7.47),
+				Vector3D(-0.47, 2.13, 4.47),
+				Vector3D(-0.47, -0.87, 4.47)
+			));
+
 			scene->addObject(object);
-			scene->addLight(new Light(Vector3D(0, 3, 3), 5.0));
+			scene->addObject(triangle);
+			scene->addLight(new Light(Vector3D(-4, 0, 5)));
 
 			ViewPort viewPort = ViewPort(SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -112,10 +83,8 @@ int main(int argc, char* args[])
 				}
 			}
 
-			//Update the surface
 			SDL_UpdateWindowSurface(window);
 
-			//Hack to get window to stay up
 			SDL_Event e;
 			bool quit = false;
 			while (quit == false)
@@ -130,10 +99,8 @@ int main(int argc, char* args[])
 		}
 	}
 
-	//Destroy window
 	SDL_DestroyWindow(window);
 
-	//Quit SDL subsystems
 	SDL_Quit();
 
 	return 0;

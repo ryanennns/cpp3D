@@ -6,7 +6,7 @@ class Light
 {
 public:
 	Light();
-	Light(Vector3D, double);
+	Light(Vector3D);
 
 	Vector3D getOrigin();
 	void setOrigin(Vector3D);
@@ -15,5 +15,4 @@ public:
 	void setIntensity(double);
 private:
 	Vector3D origin;
-	double intensity;
 };

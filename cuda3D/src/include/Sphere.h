@@ -14,6 +14,8 @@ private:
 
 	double intersectDiscriminant(Ray);
 public:
+	//static const double SPHERE_EPSILON = 1e-12;
+
 	Sphere();
 	Sphere(const Vector3D&, double);
 	Sphere(const Sphere&);
@@ -27,4 +29,6 @@ public:
 
 	Rgb getColour() override;
 	void setColour(Rgb) override;
+
+	bool verifyIntersection(Vector3D, Vector3D) override;
 };

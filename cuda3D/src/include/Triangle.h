@@ -13,6 +13,8 @@ private:
 
 	bool isPointInTriangle(Vector3D);
 public:
+	//static const double TRIANGLE_EPSILON = 1e-12;
+
 	Triangle(Vector3D, Vector3D, Vector3D);
 
 	Vector3D getA();
@@ -31,4 +33,6 @@ public:
 
 	Rgb getColour() override;
 	void setColour(Rgb) override;
+
+	bool verifyIntersection(Vector3D, Vector3D) override;
 };

@@ -49,13 +49,16 @@ vector<HitDetection> Scene::intersections(Ray ray)
 		vector<Vector3D> objectIntersections = objects.at(i)->intersections(ray);
 		if (objectIntersections.size() > 0)
 		{
-			intersections.push_back(
-				HitDetection(
-					objectIntersections.at(0),
-					//objects.at(i),
-					objects.at(i)->getColour()
-				)
-			);
+			for (int j = 0; j < objectIntersections.size(); j++)
+			{
+				intersections.push_back(
+					HitDetection(
+						objectIntersections.at(j),
+						//objects.at(i),
+						objects.at(i)->getColour()
+					)
+				);
+			}
 		}
 	}
 	return intersections;

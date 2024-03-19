@@ -10,7 +10,7 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
 
-namespace RendererTests
+namespace EnvironmentTests
 {
 	TEST_CLASS(TriangleTest)
 	{

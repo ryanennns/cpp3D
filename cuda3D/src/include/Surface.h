@@ -16,4 +16,5 @@ public:
 	virtual Surface* clone() const = 0; // Pure virtual clone method
 	virtual Rgb getColour() = 0;
 	virtual void setColour(Rgb) = 0;
+	virtual bool verifyIntersection(Vector3D, Vector3D) = 0;
 };

@@ -9,9 +9,9 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace RendererTests
+namespace EnvironmentTests
 {
-	TEST_CLASS(SphereIntersectTest)
+	TEST_CLASS(SphereTest)
 	{
 	public:
 		TEST_METHOD(test_no_hit_detection_if_line_does_not_touch_sphere)
@@ -80,6 +80,18 @@ namespace RendererTests
 			Assert::AreEqual(sphere.getCenter().x, ((Sphere*)clonedSphere)->getCenter().x);
 			Assert::AreEqual(sphere.getCenter().y, ((Sphere*)clonedSphere)->getCenter().y);
 			Assert::AreEqual(sphere.getCenter().z, ((Sphere*)clonedSphere)->getCenter().z);
+		}
+
+		// write a test to confirm it doesn't detect a hit if the sphere is behind the ray
+
+		TEST_METHOD(test_it_does_not_detect_hit_if_sphere_is_behind_ray)
+		{
+			Sphere sphere = Sphere(Vector3D(0, 0, 5), 1);
+			Ray ray = Ray(Vector3D(0, 0, 0), Vector3D(0, 0, -1));
+
+			std::vector<Vector3D> rayIntersections = sphere.intersections(ray);
+
+			Assert::AreEqual((size_t)0, rayIntersections.size());
 		}
 	};
 }

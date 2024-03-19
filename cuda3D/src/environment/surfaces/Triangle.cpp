@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "../../include/Triangle.h"
 #include "../../include/Vector3D.h"
 #include "../../include/Ray.h"
@@ -60,6 +62,7 @@ Vector3D Triangle::getNormal()
 
 std::vector<Vector3D> Triangle::intersections(Ray ray)
 {
+	const double epsilon = 1e-12;
 	std::vector<Vector3D> returnVector;
 
 	Vector3D normal = this->getNormal();
@@ -73,11 +76,13 @@ std::vector<Vector3D> Triangle::intersections(Ray ray)
 	double t = -((normal.dotProduct(ray.getOrigin())) + d)
 				/ NdotRayDirection;
 
+	Vector3D planeIntersection = ray.evaluate(t);
 	if (
-		this->isPointInTriangle(ray.evaluate(t))
+		this->isPointInTriangle(planeIntersection)
 		&& t > 0
+		&& this->verifyIntersection(planeIntersection, ray.getOrigin())
 	) {
-		returnVector.push_back(ray.evaluate(t));
+		returnVector.push_back(planeIntersection);
 	}
 
 	return returnVector;
@@ -113,4 +118,11 @@ void Triangle::transform(Vector3D translation, Vector3D rotation)
 Surface* Triangle::clone() const
 {
 	return new Triangle(*this);
+}
+
+bool Triangle::verifyIntersection(Vector3D a, Vector3D b)
+{
+	return std::fabs(a.x - b.x) > 1e-12
+		&& std::fabs(a.y - b.y) > 1e-12
+		&& std::fabs(a.z - b.z) > 1e-12;
 }

@@ -45,6 +45,7 @@ void Sphere::setColour(Rgb colour)
 
 std::vector<Vector3D> Sphere::intersections(Ray ray)
 {
+	const double epsilon = 1e-12;
 	const double discriminant = this->intersectDiscriminant(ray);
 	vector<Vector3D> returnVector;
 
@@ -59,14 +60,35 @@ std::vector<Vector3D> Sphere::intersections(Ray ray)
 	double a = d.dotProduct(d);
 	double b = 2 * d.dotProduct(e.subtract(center));
 
-	returnVector.push_back(
-		ray.evaluate((-b - sqrt(discriminant)) / (2 * a))
-	);
+	double t1 = (-b - sqrt(discriminant)) / (2 * a);
 
-	if (discriminant > 0.0) {
-		returnVector.push_back(
-			ray.evaluate((-b + sqrt(discriminant)) / (2 * a))
-		);
+	if (t1 > 0.0)
+	{
+		Vector3D firstIntersect = ray.evaluate(t1);
+
+		if (
+			std::fabs(firstIntersect.x - ray.getOrigin().x) > epsilon
+			&& std::fabs(firstIntersect.y - ray.getOrigin().y) > epsilon
+			&& std::fabs(firstIntersect.z - ray.getOrigin().z) > epsilon
+			)
+		{
+			returnVector.push_back(firstIntersect);
+		}
+
+		//returnVector.push_back(
+		//	ray.evaluate(t1)
+		//);
+	}
+
+	if (discriminant > 0.0 && (-b + sqrt(discriminant)) / (2 * a) > 0.0) {
+		double t2 = (-b + sqrt(discriminant)) / (2 * a);
+
+		Vector3D secondIntersect = ray.evaluate(t2);
+
+		if (this->verifyIntersection(secondIntersect, ray.getOrigin()))
+		{
+			returnVector.push_back(secondIntersect);
+		}
 	}
 
 	return returnVector;
@@ -94,4 +116,11 @@ void Sphere::transform(Vector3D translation, Vector3D rotation)
 Surface* Sphere::clone() const
 {
 	return new Sphere(*this);
+}
+
+bool Sphere::verifyIntersection(Vector3D a, Vector3D b)
+{
+	return std::fabs(a.x - b.x) > 1e-12
+		&& std::fabs(a.y - b.y) > 1e-12
+		&& std::fabs(a.z - b.z) > 1e-12;
 }
