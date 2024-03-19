@@ -52,18 +52,19 @@ Rgb ViewDriver::processLighting(HitDetection intersection)
 	double spec = std::pow(std::max(viewDirection.dotProduct(reflectDirection), 0.0), 16);
 	Rgb specular = (Rgb(200,200,200) + objectColor * 0.01) * 0.7 * spec;
 
-	// todo not ambient pure black
 	Rgb ambient = Rgb(0, 0, 0);
 
 	double diff = std::fabs(normal.dotProduct(lightDirection));
 	Rgb diffuse = objectColor * diff;
 
-	Rgb combinedLight = (ambient + diffuse + specular);
+	Rgb combinedLight = (ambient + diffuse);
 
 	if (this->isInShadow(intersection, light))
 	{
-		combinedLight = combinedLight * 0.15;
+		return combinedLight * 0.15;
 	}
+
+	combinedLight = combinedLight + specular;
 
 	return combinedLight;
 }
