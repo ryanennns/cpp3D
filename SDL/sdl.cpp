@@ -54,21 +54,43 @@ int main(int argc, char* args[])
 			Uint32 staticColor = SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF);
 			Scene* scene = new Scene();
 
-			Object* object = new Object();
-			object->addSurface(new Sphere(Vector3D(-2, 0, 5.15), 0.3));
-			object->setColour(Rgb(255, 0, 0));
+			//Object* object = new Object();
+			//object->addSurface(new Sphere(Vector3D(0, 0, 5.15), 0.3));
+			//object->setColour(Rgb(255, 0, 0));
 
+			//Object* triangle = new Object();
+			//triangle->setColour(Rgb(0, 255, 64));
+			//triangle->addSurface(new Triangle(
+			//	Vector3D(2.47, -0.87, 7.47),
+			//	Vector3D(-0.47, 2.13, 4.47),
+			//	Vector3D(-0.47, -0.87, 4.47)
+			//));
+
+			//scene->addObject(object);
+			//scene->addObject(triangle);
+			//scene->addLight(new Light(Vector3D(-4, 0, 5)));
+			
+			//
+
+			// Create a sphere object and set its colour to red
+			Object* sphere = new Object();
+			sphere->addSurface(new Sphere(Vector3D(-0.2, -0.3, 2), 0.3)); // Position the sphere above the origin in the positive Z direction
+			sphere->setColour(Rgb(255, 0, 0)); // Red color
+
+			// Create a triangle object and set its colour to green
 			Object* triangle = new Object();
-			triangle->setColour(Rgb(0, 255, 64));
+			triangle->setColour(Rgb(0, 255, 64)); // Green color
+			// Define the triangle vertices to form a base for the sphere
 			triangle->addSurface(new Triangle(
-				Vector3D(2.47, -0.87, 7.47),
-				Vector3D(-0.47, 2.13, 4.47),
-				Vector3D(-0.47, -0.87, 4.47)
+				Vector3D(1, -1, 1.5), // Vertex 1
+				Vector3D(-1, -1, 1.5), // Vertex 2
+				Vector3D(0, 1, 1.5) // Vertex 3, ensuring all vertices are in the positive Z space
 			));
 
-			scene->addObject(object);
+			scene->addObject(sphere);
 			scene->addObject(triangle);
-			scene->addLight(new Light(Vector3D(-4, 0, 5)));
+
+			scene->addLight(new Light(Vector3D(-6, 0, 5))); // Position the light source to illuminate the objects
 
 			ViewPort viewPort = ViewPort(SCREEN_WIDTH, SCREEN_HEIGHT);
 
