@@ -1,12 +1,12 @@
 #pragma once
 
 #include "Vector3D.h"
-#include "Object.h"
+#include "Rgb.h"
 
-class HitDetection
+class RaySurfaceIntersection
 {
 public:
-	HitDetection(Vector3D, Vector3D, Rgb);
+	RaySurfaceIntersection(Vector3D, Vector3D, Rgb);
 
 	Vector3D getHitPoint();
 	Vector3D getNormal();

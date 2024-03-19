@@ -17,4 +17,6 @@ public:
 private:
 	Scene* scene;
 	ViewPort viewPort;
+
+	Rgb diffuse(HitDetection);
 };

@@ -3,8 +3,9 @@
 #include <vector>
 #include <memory>
 
-#include "./Surface.h"
-#include "./Ray.h"
+#include "Surface.h"
+#include "Ray.h"
+#include "RaySurfaceIntersection.h"
 
 class Object
 {
@@ -12,7 +13,7 @@ public:
 	Object();
 	Object(Object&);
 	~Object();
-	std::vector<Vector3D> intersections(Ray ray);
+	std::vector<RaySurfaceIntersection> intersections(Ray ray);
 	void addSurface(Surface* surface);
 	void transform(Vector3D translation, Vector3D rotation = Vector3D(0,0,0));
 	void setColour(Rgb colour);

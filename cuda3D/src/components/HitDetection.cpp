@@ -9,9 +9,10 @@
 //	this->colour = colour;
 //}
 
-HitDetection::HitDetection(Vector3D hitPoint, Rgb colour)
+HitDetection::HitDetection(Vector3D hitPoint, Vector3D surfaceNormal, Rgb colour)
 {
 	this->hitPoint = hitPoint;
+	this->surfaceNormal = surfaceNormal;
 	this->colour = colour;
 }
 
@@ -23,6 +24,11 @@ Vector3D HitDetection::getHitPoint()
 Rgb HitDetection::getColour()
 {
 	return this->colour;
+}
+
+Vector3D HitDetection::getNormal()
+{
+	return this->surfaceNormal;
 }
 
 //Object HitDetection::getHitObject()

@@ -17,4 +17,5 @@ public:
 	virtual Rgb getColour() = 0;
 	virtual void setColour(Rgb) = 0;
 	virtual bool verifyIntersection(Vector3D, Vector3D) = 0;
+	virtual Vector3D getNormal(Vector3D) = 0;
 };

@@ -1,5 +1,8 @@
 #include <vector>
 #include "../include/Scene.h"
+#include "../include/HitDetection.h"
+#include "../include/Ray.h"
+#include "../include/RaySurfaceIntersection.h"
 
 using namespace std;
 
@@ -46,16 +49,17 @@ vector<HitDetection> Scene::intersections(Ray ray)
 	vector<HitDetection> intersections;
 	for (int i = 0; i < this->objects.size(); i++)
 	{
-		vector<Vector3D> objectIntersections = objects.at(i)->intersections(ray);
+		vector<RaySurfaceIntersection> objectIntersections = objects.at(i)->intersections(ray);
 		if (objectIntersections.size() > 0)
 		{
 			for (int j = 0; j < objectIntersections.size(); j++)
 			{
+				RaySurfaceIntersection intersection = objectIntersections.at(j);
 				intersections.push_back(
 					HitDetection(
-						objectIntersections.at(j),
-						//objects.at(i),
-						objects.at(i)->getColour()
+						intersection.getHitPoint(),
+						intersection.getNormal(),
+						this->objects.at(i)->getColour()
 					)
 				);
 			}

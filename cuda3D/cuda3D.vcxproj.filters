@@ -18,6 +18,7 @@
     <ClCompile Include="src\environment\surfaces\Triangle.cpp" />
     <ClCompile Include="src\environment\Light.cpp" />
     <ClCompile Include="src\components\HitDetection.cpp" />
+    <ClCompile Include="src\components\RaySurfaceIntersection.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\Ray.h">
@@ -38,6 +39,7 @@
     <ClInclude Include="src\include\Triangle.h" />
     <ClInclude Include="src\include\Light.h" />
     <ClInclude Include="src\include\HitDetection.h" />
+    <ClInclude Include="src\include\RaySurfaceIntersection.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

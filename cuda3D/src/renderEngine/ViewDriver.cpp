@@ -41,13 +41,23 @@ vector<vector<Rgb>> ViewDriver::processFrame()
 Rgb ViewDriver::processLighting(HitDetection intersection)
 {
     Light* light = this->scene->getLights().at(0); 
-
 	Rgb returnRgb = intersection.getColour();
-	
+	Vector3D normal = intersection.getNormal().normalize();
+	Vector3D hit = intersection.getHitPoint();
+
+	Rgb ambient = Rgb(0, 0, 0);
+
+	Vector3D lightDirection = light->getOrigin().subtract(hit).normalize();
+	double diff = std::max(normal.dotProduct(lightDirection), 0.0);
+
+	Rgb diffuse = Rgb(255,255,255) * diff;
+
 	if (this->isInShadow(intersection, light))
 	{
 		returnRgb = Rgb(32, 32, 32);
 	}
+
+	//returnRgb = (ambient + diffuse) * intersection.getColour();
 
     return returnRgb;
 }

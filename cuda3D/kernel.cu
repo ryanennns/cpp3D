@@ -13,6 +13,7 @@
 #include "./src/include/ViewPort.h"
 #include "./src/include/Light.h"
 #include "./src/include/HitDetection.h"
+#include "./src/include/RaySurfaceIntersection.h"
 
 int main()
 {

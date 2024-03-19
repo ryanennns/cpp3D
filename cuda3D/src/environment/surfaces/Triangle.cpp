@@ -51,7 +51,7 @@ void Triangle::setColour(Rgb colour)
 	this->colour = colour;
 }
 
-Vector3D Triangle::getNormal()
+Vector3D Triangle::normal()
 {
 	Vector3D AB = B.subtract(A);
 	Vector3D AC = C.subtract(A);
@@ -65,7 +65,7 @@ std::vector<Vector3D> Triangle::intersections(Ray ray)
 	const double epsilon = 1e-12;
 	std::vector<Vector3D> returnVector;
 
-	Vector3D normal = this->getNormal();
+	Vector3D normal = this->normal();
 	double NdotRayDirection = normal.dotProduct(ray.getDirection());
 
 	if (NdotRayDirection == 0.0) {
@@ -98,9 +98,9 @@ bool Triangle::isPointInTriangle(Vector3D point)
 	Vector3D C1 = point.subtract(B);
 	Vector3D C2 = point.subtract(C);
 
-	if (this->getNormal().dotProduct(edge0.crossProduct(C0)) > 0 &&
-		this->getNormal().dotProduct(edge1.crossProduct(C1)) > 0 &&
-		this->getNormal().dotProduct(edge2.crossProduct(C2)) > 0) {
+	if (this->normal().dotProduct(edge0.crossProduct(C0)) > 0 &&
+		this->normal().dotProduct(edge1.crossProduct(C1)) > 0 &&
+		this->normal().dotProduct(edge2.crossProduct(C2)) > 0) {
 
 		return true;
 	}
@@ -125,4 +125,9 @@ bool Triangle::verifyIntersection(Vector3D a, Vector3D b)
 	return std::fabs(a.x - b.x) > 1e-12
 		&& std::fabs(a.y - b.y) > 1e-12
 		&& std::fabs(a.z - b.z) > 1e-12;
+}
+
+Vector3D Triangle::getNormal(Vector3D point)
+{
+	return this->normal();
 }

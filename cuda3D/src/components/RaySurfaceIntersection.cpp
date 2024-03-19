@@ -1,20 +1,12 @@
 #include "../include/RaySurfaceIntersection.h"
 #include "../include/Vector3D.h"
-#include "../include/Surface.h"
-#include "../include/Ray.h"
 #include "../include/Rgb.h"
 
-RaySurfaceIntersection::RaySurfaceIntersection(Vector3D hitPoint, Vector3D normal, Rgb colour, Surface* surface)
+RaySurfaceIntersection::RaySurfaceIntersection(Vector3D hitPoint, Vector3D surfaceNormal, Rgb colour)
 {
 	this->hitPoint = hitPoint;
-	this->normal = normal;
+	this->surfaceNormal = surfaceNormal;
 	this->colour = colour;
-	this->surface = surface;
-}
-
-RaySurfaceIntersection::~RaySurfaceIntersection()
-{
-	delete this->surface;
 }
 
 Vector3D RaySurfaceIntersection::getHitPoint()
@@ -24,7 +16,7 @@ Vector3D RaySurfaceIntersection::getHitPoint()
 
 Vector3D RaySurfaceIntersection::getNormal()
 {
-	return this->normal;
+	return this->surfaceNormal;
 }
 
 Rgb RaySurfaceIntersection::getColour()

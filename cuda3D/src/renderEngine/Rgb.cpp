@@ -43,3 +43,30 @@ void Rgb::setBlue(unsigned char value)
 {
 	this->b = value;
 }
+
+Rgb Rgb::operator*(double scalar)
+{
+	return Rgb(
+		(unsigned char)(this->r * scalar),
+		(unsigned char)(this->g * scalar),
+		(unsigned char)(this->b * scalar)
+	);
+}
+
+Rgb Rgb::operator*(Rgb other)
+{
+	return Rgb(
+		(unsigned char)(this->r * other.r),
+		(unsigned char)(this->g * other.g),
+		(unsigned char)(this->b * other.b)
+	);
+}
+
+Rgb Rgb::operator+(Rgb other)
+{
+	return Rgb(
+		(unsigned char)(this->r + other.r),
+		(unsigned char)(this->g + other.g),
+		(unsigned char)(this->b + other.b)
+	);
+}

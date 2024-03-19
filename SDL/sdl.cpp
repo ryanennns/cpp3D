@@ -82,8 +82,8 @@ int main(int argc, char* args[])
 			triangle->setColour(Rgb(0, 255, 64)); // Green color
 			// Define the triangle vertices to form a base for the sphere
 			triangle->addSurface(new Triangle(
-				Vector3D(1, -1, 1.5), // Vertex 1
 				Vector3D(-1, -1, 1.5), // Vertex 2
+				Vector3D(1, -1, 1.5), // Vertex 1
 				Vector3D(0, 1, 1.5) // Vertex 3, ensuring all vertices are in the positive Z space
 			));
 

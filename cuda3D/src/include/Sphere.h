@@ -31,4 +31,5 @@ public:
 	void setColour(Rgb) override;
 
 	bool verifyIntersection(Vector3D, Vector3D) override;
+	Vector3D getNormal(Vector3D) override;
 };

@@ -25,7 +25,7 @@ public:
 	void setB(Vector3D);
 	void setC(Vector3D);
 
-	Vector3D getNormal();
+	Vector3D normal();
 
 	std::vector<Vector3D> intersections(Ray) override;
 	void transform(Vector3D translation, Vector3D rotation = Vector3D(0, 0, 0)) override;
@@ -35,4 +35,5 @@ public:
 	void setColour(Rgb) override;
 
 	bool verifyIntersection(Vector3D, Vector3D) override;
+	Vector3D getNormal(Vector3D) override;
 };

@@ -10,9 +10,6 @@ public:
 
 	Vector3D getOrigin();
 	void setOrigin(Vector3D);
-
-	double getIntensity();
-	void setIntensity(double);
 private:
 	Vector3D origin;
 };

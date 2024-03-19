@@ -1,5 +1,6 @@
 #include "../include/Object.h"
 #include "../include/Ray.h"
+#include "../include/RaySurfaceIntersection.h"
 
 using namespace std;
 
@@ -25,16 +26,19 @@ Object::~Object()
 	}
 }
 
-vector<Vector3D> Object::intersections(Ray ray)
+vector<RaySurfaceIntersection> Object::intersections(Ray ray)
 {
-	vector<Vector3D> returnVector;
+	vector<RaySurfaceIntersection> returnVector;
 
 	for (int i = 0; i < surfaces.size(); i++)
 	{
 		vector<Vector3D> intersects = surfaces.at(i)->intersections(ray);
 		for (int j = 0; j < intersects.size(); j++)
 		{
-			returnVector.push_back(intersects.at(j));
+			Vector3D intersection = intersects.at(j);
+			returnVector.push_back(
+				RaySurfaceIntersection(intersection, surfaces.at(i)->getNormal(intersection), surfaces.at(i)->getColour())
+			);
 		}
 	}
 

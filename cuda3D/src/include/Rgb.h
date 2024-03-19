@@ -15,4 +15,7 @@ public:
 	void setRed(unsigned char);
 	void setGreen(unsigned char);
 	void setBlue(unsigned char);
+	Rgb operator*(double);
+	Rgb operator*(Rgb);
+	Rgb operator+(Rgb);
 };

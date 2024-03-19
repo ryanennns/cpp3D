@@ -124,3 +124,8 @@ bool Sphere::verifyIntersection(Vector3D a, Vector3D b)
 		&& std::fabs(a.y - b.y) > 1e-12
 		&& std::fabs(a.z - b.z) > 1e-12;
 }
+
+Vector3D Sphere::getNormal(Vector3D point)
+{
+	return point.subtract(this->center).normalize();
+}

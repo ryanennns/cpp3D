@@ -4,6 +4,7 @@
 #include "include/Object.h"
 #include "include/Triangle.h"
 #include "include/Sphere.h"
+#include "include/RaySurfaceIntersection.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -24,7 +25,7 @@ namespace RendererTests
 
 			Ray ray = Ray(Vector3D(0, 0, 0), Vector3D(0, 0, 1));
 
-			std::vector<Vector3D> intersections = object.intersections(ray);
+			std::vector<RaySurfaceIntersection> intersections = object.intersections(ray);
 
 			Assert::AreEqual((size_t)3, intersections.size());
 		}
