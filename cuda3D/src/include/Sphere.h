@@ -18,6 +18,7 @@ public:
 
 	Sphere();
 	Sphere(const Vector3D&, double);
+	Sphere(const Vector3D&, double, Rgb);
 	Sphere(const Sphere&);
 
 	Vector3D getCenter();

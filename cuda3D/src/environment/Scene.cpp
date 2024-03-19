@@ -59,7 +59,7 @@ vector<HitDetection> Scene::intersections(Ray ray)
 					HitDetection(
 						intersection.getHitPoint(),
 						intersection.getNormal(),
-						objects.at(i)->getColour()
+						intersection.getColour()
 					)
 				);
 			}

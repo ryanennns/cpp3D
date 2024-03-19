@@ -54,40 +54,55 @@ int main(int argc, char* args[])
 			Uint32 staticColor = SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF);
 			Scene* scene = new Scene();
 
-			Object* object = new Object();	
-			object->addSurface(new Sphere(Vector3D(-0.5, -0.5, 1.5), 0.1));
-			object->setColour(Rgb(251, 182, 209));
-			scene->addObject(object);
+			//Object* object = new Object();	
+			//object->addSurface(new Sphere(Vector3D(-0.5, -0.5, 1.5), 0.1));
+			//object->setColour(Rgb(251, 182, 209));
+			//scene->addObject(object);
+			//Object* object1 = new Object();
+			//object1->addSurface(new Sphere(Vector3D(-1, -1, 2), 0.4));
+			//object1->setColour(Rgb(253, 253, 150));
+			//scene->addObject(object1);
+			//Object* object2 = new Object();
+			//object2->addSurface(new Sphere(Vector3D(-1, 1, 2), 0.8));
+			//object2->setColour(Rgb(150, 150, 253));
+			//scene->addObject(object2);
+			//Object* sphere = new Object();
+			//sphere->addSurface(new Sphere(Vector3D(1, 0, 2), 0.3));
+			//sphere->setColour(Rgb(133, 209, 93));
+			//scene->addObject(sphere);
 
-			Object* object1 = new Object();
-			object1->addSurface(new Sphere(Vector3D(-1, -1, 2), 0.4));
-			object1->setColour(Rgb(253, 253, 150));
-			scene->addObject(object1);
-
-			Object* object2 = new Object();
-			object2->addSurface(new Sphere(Vector3D(-1, 1, 2), 0.8));
-			object2->setColour(Rgb(150, 150, 253));
-			scene->addObject(object2);
-
+			Object* triangle = new Object();
+			triangle->addSurface(new Triangle(
+				Vector3D(2, 2, 3),
+				Vector3D(-2, 2, 3),
+				Vector3D(-2, 0, 4),
+				Rgb(255, 100, 0)
+			));
+			triangle->addSurface(new Triangle(
+				Vector3D(2, 2, 3),
+				Vector3D(-2, 0, 4),
+				Vector3D(2, 0, 4),
+				Rgb(0,255,100)
+			));
+			triangle->addSurface(new Triangle(
+				Vector3D(2, -1, 6),
+				Vector3D(-2, 0, 4),
+				Vector3D(2, 0, 4),
+				Rgb(0, 100, 255)
+			));
+			triangle->addSurface(new Triangle(
+				Vector3D(2, -1, 6),
+				Vector3D(-2, 0, 4),
+				Vector3D(-2, -1, 6),
+				Rgb(255, 0, 255)
+			));
 			Object* sphere = new Object();
-			sphere->addSurface(new Sphere(Vector3D(1, 0, 2), 0.3));
-			sphere->setColour(Rgb(133, 209, 93));
+			sphere->addSurface(new Sphere(Vector3D(0, -1, 3.75), 0.5, Rgb(100,200,255)));
+			sphere->setColour(Rgb(209, 133, 93));
 			scene->addObject(sphere);
+			scene->addObject(triangle);
 
-			//Object* triangle = new Object();
-			//triangle->addSurface(new Triangle(
-			//	Vector3D(1, 1, 4),
-			//	Vector3D(-1, 1, 5),
-			//	Vector3D(-1, -1, 4)
-			//));
-			//triangle->addSurface(new Triangle(
-			//	Vector3D(1, 1, 4),
-			//	Vector3D(-1, -1, 4),
-			//	Vector3D(1, -1, 5)
-			//));
-			//scene->addObject(triangle);
-
-			scene->addLight(new Light(Vector3D(0, 0, 1)));
+			scene->addLight(new Light(Vector3D(0, -3, 3)));
 
 			ViewPort viewPort = ViewPort(SCREEN_WIDTH, SCREEN_HEIGHT);
 

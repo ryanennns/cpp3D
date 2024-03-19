@@ -17,6 +17,13 @@ Sphere::Sphere(const Vector3D& center, double radius)
 	this->radius = radius;
 }
 
+Sphere::Sphere(const Vector3D& center, double radius, Rgb colour)
+{
+	this->center = Vector3D(center);
+	this->radius = radius;
+	this->colour = colour;
+}
+
 Sphere::Sphere(const Sphere& sphere)
 {
 	this->center = Vector3D(sphere.center);

@@ -16,6 +16,7 @@ public:
 	//static const double TRIANGLE_EPSILON = 1e-12;
 
 	Triangle(Vector3D, Vector3D, Vector3D);
+	Triangle(Vector3D, Vector3D, Vector3D, Rgb);
 
 	Vector3D getA();
 	Vector3D getB();

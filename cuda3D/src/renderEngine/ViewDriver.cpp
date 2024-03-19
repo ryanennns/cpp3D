@@ -49,7 +49,7 @@ Rgb ViewDriver::processLighting(HitDetection intersection)
 	Rgb objectColor = intersection.getColour();
 
 	Vector3D reflectDirection = this->reflect(lightDirection.negative(), normal).normalize();
-	double spec = std::pow(std::max(viewDirection.dotProduct(reflectDirection), 0.0), 16);
+	double spec = std::pow(std::max(viewDirection.dotProduct(reflectDirection), 0.0), 2);
 	Rgb specular = (Rgb(200,200,200) + objectColor * 0.01) * 0.7 * spec;
 
 	Rgb ambient = Rgb(0, 0, 0);
@@ -61,8 +61,11 @@ Rgb ViewDriver::processLighting(HitDetection intersection)
 
 	if (this->isInShadow(intersection, light))
 	{
+		//return Rgb(32, 32, 32);
 		return combinedLight * 0.15;
 	}
+
+	//return objectColor;
 
 	combinedLight = combinedLight + specular;
 
