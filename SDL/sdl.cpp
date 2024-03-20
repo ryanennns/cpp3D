@@ -71,6 +71,9 @@ int main(int argc, char* args[])
 			//sphere->setColour(Rgb(133, 209, 93));
 			//scene->addObject(sphere);
 
+			// =============================================================
+			// SPHERE OVER RAMP
+			// =============================================================
 			Object* triangle = new Object();
 			triangle->addSurface(new Triangle(
 				Vector3D(2, 2, 3),
@@ -102,7 +105,7 @@ int main(int argc, char* args[])
 			));
 			Object* sphere = new Object();
 			sphere->addSurface(new Sphere(
-				Vector3D(0, -1, 3.75),
+				Vector3D(0, -1, 4),
 				0.5,
 				Rgb(100,200,255),
 				16
@@ -111,7 +114,68 @@ int main(int argc, char* args[])
 			scene->addObject(sphere);
 			scene->addObject(triangle);
 
-			scene->addLight(new Light(Vector3D(0, -3, 3)));
+			// =============================================================
+			// CUBE OFFSET
+			// =============================================================
+			//Object* triangle = new Object();
+			//// First triangle
+			//triangle->addSurface(new Triangle(
+			//	Vector3D(-1, 2, 5), // Moved by -1 in X
+			//	Vector3D(-3, 2, 5), // Moved by -1 in X
+			//	Vector3D(-3, 0, 4), // Moved by -1 in X
+			//	Rgb(255, 100, 0),
+			//	2
+			//));
+
+			//// Second triangle
+			//triangle->addSurface(new Triangle(
+			//	Vector3D(-1, 2, 5), // Moved by -1 in X
+			//	Vector3D(-3, 0, 4), // Moved by -1 in X
+			//	Vector3D(-1, 0, 4), // Moved by -1 in X
+			//	Rgb(0, 0, 100),
+			//	2
+			//));
+
+			//// Third triangle
+			//triangle->addSurface(new Triangle(
+			//	Vector3D(-1, -1, 6), // Moved by -1 in X
+			//	Vector3D(-3, 0, 4), // Moved by -1 in X
+			//	Vector3D(-1, 0, 4), // Moved by -1 in X
+			//	Rgb(0, 0, 255),
+			//	2
+			//));
+
+			//// Fourth triangle
+			//triangle->addSurface(new Triangle(
+			//	Vector3D(-1, -1, 6), // Moved by -1 in X
+			//	Vector3D(-3, 0, 4), // Moved by -1 in X
+			//	Vector3D(-3, -1, 6), // Moved by -1 in X
+			//	Rgb(255, 0, 255),
+			//	2
+			//));
+
+			//// Fifth triangle
+			//triangle->addSurface(new Triangle(
+			//	Vector3D(-1, 2, 5), // Moved by -1 in X
+			//	Vector3D(-1, 0, 4), // Moved by -1 in X
+			//	Vector3D(-1, -1, 6), // Moved by -1 in X
+			//	Rgb(255, 0, 0),
+			//	2
+			//));
+
+			//triangle->addSurface(new Triangle(
+			//	Vector3D(-1, 2, 5), // Moved by -1 in X
+			//	Vector3D(-1, 1, 7), // Moved by -1 in X
+			//	Vector3D(-1, -1, 6), // Moved by -1 in X
+			//	Rgb(255, 0, 255),
+			//	2
+			//));
+			//scene->addObject(triangle);
+			//scene->addObject(sphere);
+
+
+			//scene->addLight(new Light(Vector3D(-2, 0.5, 2)));
+			scene->addLight(new Light(Vector3D(-2, -3, 3)));
 
 			ViewPort viewPort = ViewPort(SCREEN_WIDTH, SCREEN_HEIGHT);
 

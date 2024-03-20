@@ -46,6 +46,15 @@ void Rgb::setBlue(unsigned char value)
 	this->b = value;
 }
 
+Rgb Rgb::average(Rgb other)
+{
+	return Rgb(
+		(unsigned char)((this->r + other.r) / 2),
+		(unsigned char)((this->g + other.g) / 2),
+		(unsigned char)((this->b + other.b) / 2)
+	);
+}
+
 Rgb Rgb::operator*(double scalar)
 {
 	if (this->r * scalar > 255 ||

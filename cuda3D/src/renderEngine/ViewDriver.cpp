@@ -60,27 +60,35 @@ Rgb ViewDriver::getDiffuse(Vector3D& normal, Vector3D& lightDirection, Rgb& obje
 
 Rgb ViewDriver::processLighting(HitDetection intersection)
 {
-	Light* light = this->scene->getLights().at(0);
 	Vector3D normal = intersection.getNormal().normalize();
 	Vector3D hitPoint = intersection.getHitPoint();
 	Vector3D viewDirection = this->viewPort.getEye().subtract(hitPoint).normalize();
-	Vector3D lightDirection = light->getOrigin().subtract(hitPoint).normalize();
-	Rgb objectColor = intersection.getColour();
+	Rgb objectColour = intersection.getColour();
 
-	Rgb specular = this->getSpecular(lightDirection, normal, viewDirection, objectColor, intersection.getSpecularCoefficient());
-	Rgb ambient = this->getAmbient();
-	Rgb diffuse = this->getDiffuse(normal, lightDirection, objectColor);
+	Rgb finalColour;
+	vector<Light*> lights = this->scene->getLights();
+	for (int i = 0; i < lights.size(); i++)
+	{
+		Light* light = this->scene->getLights().at(0);
+		Vector3D lightDirection = light->getOrigin().subtract(hitPoint).normalize();
 
-	Rgb combinedLight = ambient + diffuse;
+		Rgb specular = this->getSpecular(lightDirection, normal, viewDirection, objectColour, intersection.getSpecularCoefficient());
+		Rgb ambient = this->getAmbient();
+		Rgb diffuse = this->getDiffuse(normal, lightDirection, objectColour);
 
-	if (this->isInShadow(intersection, light))
-{
-		return combinedLight * 0.15;
+		Rgb combinedLight = ambient + diffuse;
+
+		if (this->isInShadow(intersection, light))
+	{
+			return combinedLight * 0.15;
+		}
+
+		combinedLight = combinedLight + specular;
+
+		finalColour = combinedLight;
 	}
 
-	combinedLight = combinedLight + specular;
-
-	return combinedLight;
+	return finalColour;
 }
 
 bool ViewDriver::isInShadow(HitDetection intersection, Light* light)
