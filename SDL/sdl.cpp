@@ -12,8 +12,8 @@
 #include "Scene.h"
 #include "ViewDriver.h"
 
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 800;
+const int SCREEN_WIDTH = 1000;
+const int SCREEN_HEIGHT = 1000;
 
 void set_pixel(SDL_Surface* surface, int x, int y, Rgb& color)
 {
@@ -105,7 +105,7 @@ int main(int argc, char* args[])
 			));
 			Object* sphere = new Object();
 			sphere->addSurface(new Sphere(
-				Vector3D(0, -1, 4),
+				Vector3D(0, -1, 3.75),
 				0.5,
 				Rgb(100,200,255),
 				16
@@ -175,7 +175,7 @@ int main(int argc, char* args[])
 
 
 			//scene->addLight(new Light(Vector3D(-2, 0.5, 2)));
-			scene->addLight(new Light(Vector3D(-2, -3, 3)));
+			scene->addLight(new Light(Vector3D(0, -2, 3)));
 
 			ViewPort viewPort = ViewPort(SCREEN_WIDTH, SCREEN_HEIGHT);
 

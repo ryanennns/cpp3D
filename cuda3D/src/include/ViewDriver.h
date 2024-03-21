@@ -12,9 +12,9 @@ class ViewDriver
 public:
 	ViewDriver(Scene*, ViewPort);
 	vector<vector<Rgb>> processFrame();
-	Rgb processLighting(HitDetection);
 	bool isInShadow(HitDetection, Light*);
 private:
+	Rgb processLighting(HitDetection);
 	Scene* scene;
 	ViewPort viewPort;
 

@@ -21,3 +21,15 @@ public:
 	Rgb operator+(Rgb);
 	Rgb operator-(Rgb);
 };
+
+/*
+ 
+
+for each line in grid
+	if line intersects object
+		return object colour
+	else
+		return background colour
+
+
+*/

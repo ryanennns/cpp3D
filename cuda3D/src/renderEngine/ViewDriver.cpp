@@ -24,9 +24,10 @@ vector<vector<Rgb>> ViewDriver::processFrame()
 		{
 			Ray ray = row.at(x);
 			vector<HitDetection> intersections = scene->intersections(ray);
+
 			if (intersections.size() > 0)
 			{
-				rgbColumn.push_back(processLighting(intersections.at(0)));
+				rgbColumn.push_back(this->processLighting(intersections.at(0)));
 			}
 			else
 			{
@@ -79,7 +80,7 @@ Rgb ViewDriver::processLighting(HitDetection intersection)
 		Rgb combinedLight = ambient + diffuse;
 
 		if (this->isInShadow(intersection, light))
-	{
+		{
 			return combinedLight * 0.15;
 		}
 
