@@ -131,5 +131,29 @@ namespace RenderEngineTests
 				}
 			}
 		}
+
+		TEST_METHOD(test_it_detects_spheres_that_are_in_their_own_shadow)
+		{
+			Scene scene = Scene();
+
+			Object object = Object();
+			object.addSurface(new Sphere(Vector3D(0, 0, 3), 1));
+			scene.addObject(&object);
+
+			Light light = Light(Vector3D(0, 0, 1));
+			scene.addLight(&light);
+
+			ViewDriver viewDriver = ViewDriver(&scene, ViewPort(200,200));
+
+			vector<HitDetection> intersections = scene.intersections(Ray(Vector3D(0, 0, 0), Vector3D(0, 0, 1)));
+
+			Assert::AreEqual((size_t)2, intersections.size());
+
+			bool isShadowed = viewDriver.isInShadow(intersections.at(0), &light);
+			Assert::IsFalse(isShadowed);
+
+			isShadowed = viewDriver.isInShadow(intersections.at(1), &light);
+			Assert::IsTrue(isShadowed);
+		}
 	};
 }

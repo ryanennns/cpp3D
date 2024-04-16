@@ -82,8 +82,6 @@ namespace EnvironmentTests
 			Assert::AreEqual(sphere.getCenter().z, ((Sphere*)clonedSphere)->getCenter().z);
 		}
 
-		// write a test to confirm it doesn't detect a hit if the sphere is behind the ray
-
 		TEST_METHOD(test_it_does_not_detect_hit_if_sphere_is_behind_ray)
 		{
 			Sphere sphere = Sphere(Vector3D(0, 0, 5), 1);
