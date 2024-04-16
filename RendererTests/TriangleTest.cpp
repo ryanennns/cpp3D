@@ -112,11 +112,6 @@ namespace EnvironmentTests
 			Assert::AreEqual(expectedC.z, actualC.z);
 		}
 
-		TEST_METHOD(test_it_rotates_triangle)
-		{
-			Assert::AreEqual("", "TODO");
-		}
-
 		TEST_METHOD(test_it_clones_triangle)
 		{
 			Triangle triangle = Triangle(
