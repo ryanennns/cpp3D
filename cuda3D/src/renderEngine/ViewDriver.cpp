@@ -49,14 +49,13 @@ Rgb ViewDriver::getSpecular(Vector3D& lightDirection, Vector3D& normal, Vector3D
 
 Rgb ViewDriver::getAmbient()
 {
-	// Assuming ambient light is constant for this example, otherwise, parameters can be added as needed
 	return Rgb(0, 0, 0); // Placeholder for ambient light calculation
 }
 
 Rgb ViewDriver::getDiffuse(Vector3D& normal, Vector3D& lightDirection, Rgb& objectColor)
 {
 	double diff = std::fabs(normal.dotProduct(lightDirection));
-	return objectColor * diff;
+	return objectColor * std::max(diff, 0.01);
 }
 
 Rgb ViewDriver::processLighting(HitDetection intersection)
@@ -68,6 +67,7 @@ Rgb ViewDriver::processLighting(HitDetection intersection)
 
 	Rgb finalColour;
 	vector<Light*> lights = this->scene->getLights();
+
 	for (int i = 0; i < lights.size(); i++)
 	{
 		Light* light = this->scene->getLights().at(0);
@@ -81,7 +81,7 @@ Rgb ViewDriver::processLighting(HitDetection intersection)
 
 		if (this->isInShadow(intersection, light))
 		{
-			return combinedLight * 0.15;
+			return combinedLight * 0.1;
 		}
 
 		combinedLight = combinedLight + specular;
