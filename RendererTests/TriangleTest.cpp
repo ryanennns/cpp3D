@@ -10,7 +10,7 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
 
-namespace RendererTests
+namespace EnvironmentTests
 {
 	TEST_CLASS(TriangleTest)
 	{
@@ -28,7 +28,7 @@ namespace RendererTests
 				Vector3D(0, 0, 1)
 			);
 
-			vector<double> intersections = triangle.intersections(ray);
+			vector<Vector3D> intersections = triangle.intersections(ray);
 
 			size_t expected = 1;
 			size_t actual = intersections.size();
@@ -49,7 +49,7 @@ namespace RendererTests
 				Vector3D(0, 0, 1)
 			);
 
-			vector<double> intersections = triangle.intersections(ray);
+			vector<Vector3D> intersections = triangle.intersections(ray);
 
 			size_t expected = 0;
 			size_t actual = intersections.size();
@@ -70,7 +70,7 @@ namespace RendererTests
 				Vector3D(0, 0, 1)
 			);
 
-			vector<double> intersections = triangle.intersections(ray);
+			vector<Vector3D> intersections = triangle.intersections(ray);
 
 			size_t expected = 0;
 			size_t actual = intersections.size();
@@ -115,6 +115,22 @@ namespace RendererTests
 		TEST_METHOD(test_it_rotates_triangle)
 		{
 			Assert::AreEqual("", "TODO");
+		}
+
+		TEST_METHOD(test_it_clones_triangle)
+		{
+			Triangle triangle = Triangle(
+				Vector3D(5, 0, 3),
+				Vector3D(-5, 5, 3),
+				Vector3D(-5, -5, 3)
+			);
+
+			Surface* clonedTriangle = triangle.clone();
+
+			Assert::IsFalse(&triangle == clonedTriangle);
+			Assert::AreEqual(triangle.getA().x, ((Triangle*)clonedTriangle)->getA().x);
+			Assert::AreEqual(triangle.getA().y, ((Triangle*)clonedTriangle)->getA().y);
+			Assert::AreEqual(triangle.getA().z, ((Triangle*)clonedTriangle)->getA().z);
 		}
 	};
 }

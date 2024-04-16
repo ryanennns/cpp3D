@@ -9,9 +9,9 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace RendererTests
+namespace EnvironmentTests
 {
-	TEST_CLASS(SphereIntersectTest)
+	TEST_CLASS(SphereTest)
 	{
 	public:
 		TEST_METHOD(test_no_hit_detection_if_line_does_not_touch_sphere)
@@ -19,7 +19,7 @@ namespace RendererTests
 			Sphere sphere = Sphere(Vector3D(0, 10, 0), 1);
 			Ray ray = Ray(Vector3D(0, 0, 0), Vector3D(0, 0, 1));
 
-			std::vector<double> rayIntersections = sphere.intersections(ray);
+			std::vector<Vector3D> rayIntersections = sphere.intersections(ray);
 
 			Assert::AreEqual((size_t)0, rayIntersections.size());
 		}
@@ -33,16 +33,16 @@ namespace RendererTests
 
 			Ray ray = Ray(rayOrigin, rayDirection);
 
-			std::vector<double> rayIntersections = sphere.intersections(ray);
-			
-			Vector3D evaluateOne = ray.evaluate(rayIntersections.at(0));
-			Vector3D evaluateTwo = ray.evaluate(rayIntersections.at(1));
-			
+			std::vector<Vector3D> rayIntersections = sphere.intersections(ray);
+
+			Vector3D evaluateOne = rayIntersections.at(0);
+			Vector3D evaluateTwo = rayIntersections.at(1);
+
 			// this rounding tomfoolering is to round to two decimal places.
 			Assert::AreEqual(-5.58, std::round(evaluateOne.x * 100) / 100.0);
 			Assert::AreEqual(5.35, std::round(evaluateOne.y * 100) / 100.0);
 			Assert::AreEqual(2.29, std::round(evaluateOne.z * 100) / 100.0);
-			
+
 			Assert::AreEqual(-7.28, std::round(evaluateTwo.x * 100) / 100.0);
 			Assert::AreEqual(6.46, std::round(evaluateTwo.y * 100) / 100.0);
 			Assert::AreEqual(2.70, std::round(evaluateTwo.z * 100) / 100.0);
@@ -57,10 +57,10 @@ namespace RendererTests
 
 			Ray ray = Ray(rayOrigin, rayDirection);
 
-			std::vector<double> rayIntersections = sphere.intersections(ray);
+			std::vector<Vector3D> rayIntersections = sphere.intersections(ray);
 
-			Vector3D evaluateOne = ray.evaluate(rayIntersections.at(0));
-			Vector3D evaluateTwo = ray.evaluate(rayIntersections.at(1));
+			Vector3D evaluateOne = rayIntersections.at(0);
+			Vector3D evaluateTwo = rayIntersections.at(1);
 
 			Assert::AreEqual(3.55, std::round(evaluateOne.x * 100) / 100.0);
 			Assert::AreEqual(-2.61, std::round(evaluateOne.y * 100) / 100.0);
@@ -69,6 +69,29 @@ namespace RendererTests
 			Assert::AreEqual(3.29, std::round(evaluateTwo.x * 100) / 100.0);
 			Assert::AreEqual(-2.97, std::round(evaluateTwo.y * 100) / 100.0);
 			Assert::AreEqual(-7.22, std::round(evaluateTwo.z * 100) / 100.0);
+		}
+		
+		TEST_METHOD(test_it_clones_a_sphere)
+		{
+			Sphere sphere = Sphere(Vector3D(0, 0, 0), 1);
+			Surface* clonedSphere = sphere.clone();
+
+			Assert::IsFalse((Surface*)&sphere == clonedSphere);
+			Assert::AreEqual(sphere.getCenter().x, ((Sphere*)clonedSphere)->getCenter().x);
+			Assert::AreEqual(sphere.getCenter().y, ((Sphere*)clonedSphere)->getCenter().y);
+			Assert::AreEqual(sphere.getCenter().z, ((Sphere*)clonedSphere)->getCenter().z);
+		}
+
+		// write a test to confirm it doesn't detect a hit if the sphere is behind the ray
+
+		TEST_METHOD(test_it_does_not_detect_hit_if_sphere_is_behind_ray)
+		{
+			Sphere sphere = Sphere(Vector3D(0, 0, 5), 1);
+			Ray ray = Ray(Vector3D(0, 0, 0), Vector3D(0, 0, -1));
+
+			std::vector<Vector3D> rayIntersections = sphere.intersections(ray);
+
+			Assert::AreEqual((size_t)0, rayIntersections.size());
 		}
 	};
 }

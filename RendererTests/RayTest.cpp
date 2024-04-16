@@ -5,7 +5,7 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace RendererTests
+namespace ComponentsTests
 {
 	TEST_CLASS(RayTest)
 	{

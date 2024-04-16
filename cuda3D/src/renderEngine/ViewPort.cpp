@@ -46,3 +46,8 @@ vector<vector<Ray>> ViewPort::getRays()
 {
 	return this->rays;
 }
+
+Vector3D ViewPort::getEye()
+{
+	return this->eye;
+}

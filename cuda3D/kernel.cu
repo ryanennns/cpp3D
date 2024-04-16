@@ -11,6 +11,9 @@
 #include "./src/include/Vector3D.h"
 #include "./src/include/ViewDriver.h"
 #include "./src/include/ViewPort.h"
+#include "./src/include/Light.h"
+#include "./src/include/HitDetection.h"
+#include "./src/include/RaySurfaceIntersection.h"
 
 int main()
 {

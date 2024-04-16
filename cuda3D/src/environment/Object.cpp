@@ -1,11 +1,21 @@
 #include "../include/Object.h"
 #include "../include/Ray.h"
+#include "../include/RaySurfaceIntersection.h"
 
 using namespace std;
 
 Object::Object()
 {
+	this->colour = Rgb(0, 255, 0);
+}
 
+Object::Object(Object& object)
+{
+	this->colour = Rgb(0, 0, 0);
+	for (int i = 0; i < object.surfaces.size(); i++)
+	{
+		this->addSurface(object.surfaces.at(i)->clone());
+	}
 }
 
 Object::~Object()
@@ -16,17 +26,25 @@ Object::~Object()
 	}
 }
 
-vector<double> Object::intersections(Ray ray)
+vector<RaySurfaceIntersection> Object::intersections(Ray ray)
 {
-	vector<double> returnVector;
+	vector<RaySurfaceIntersection> returnVector;
 
 	for (int i = 0; i < surfaces.size(); i++)
 	{
-		// todo this throws an exception when using a scene
-		vector<double> intersects = surfaces.at(i)->intersections(ray);
+		vector<Vector3D> intersects = surfaces.at(i)->intersections(ray);
 		for (int j = 0; j < intersects.size(); j++)
 		{
-			returnVector.push_back(intersects.at(j));
+			Vector3D intersection = intersects.at(j);
+			Surface* surface = surfaces.at(i);
+			returnVector.push_back(
+				RaySurfaceIntersection(
+					intersection,
+					surface->getNormal(intersection),
+					surface->getColour(),
+					surface->getSpecularCoefficient()
+				)
+			);
 		}
 	}
 
@@ -44,4 +62,14 @@ void Object::transform(Vector3D translation, Vector3D rotation)
 	{
 		surfaces.at(i)->transform(translation, rotation);
 	}
+}
+
+void Object::setColour(Rgb colour)
+{
+	this->colour = colour;
+}
+
+Rgb Object::getColour()
+{
+	return this->colour;
 }
