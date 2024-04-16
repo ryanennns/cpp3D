@@ -50,20 +50,18 @@ vector<HitDetection> Scene::intersections(Ray ray)
 	for (int i = 0; i < objects.size(); i++)
 	{
 		vector<RaySurfaceIntersection> objectIntersections = objects.at(i)->intersections(ray);
-		if (objectIntersections.size() > 0)
+
+		for (int j = 0; j < objectIntersections.size(); j++)
 		{
-			for (int j = 0; j < objectIntersections.size(); j++)
-			{
-				RaySurfaceIntersection intersection = objectIntersections.at(j);
-				intersections.push_back(
-					HitDetection(
-						intersection.getHitPoint(),
-						intersection.getNormal(),
-						intersection.getColour(),
-						intersection.getSpecularCoefficient()
-					)
-				);
-			}
+			RaySurfaceIntersection intersection = objectIntersections.at(j);
+			intersections.push_back(
+				HitDetection(
+					intersection.getHitPoint(),
+					intersection.getNormal(),
+					intersection.getColour(),
+					intersection.getSpecularCoefficient()
+				)
+			);
 		}
 	}
 	return intersections;
