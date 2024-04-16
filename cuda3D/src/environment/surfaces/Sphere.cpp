@@ -84,22 +84,10 @@ std::vector<Vector3D> Sphere::intersections(Ray ray)
 
 	double t1 = (-b - sqrt(discriminant)) / (2 * a);
 
-	if (t1 > 0.0)
+	Vector3D firstIntersect = ray.evaluate(t1);
+	if (t1 > 0.0 && this->verifyIntersection(firstIntersect, ray.getOrigin()))
 	{
-		Vector3D firstIntersect = ray.evaluate(t1);
-
-		if (
-			std::fabs(firstIntersect.x - ray.getOrigin().x) > epsilon
-			&& std::fabs(firstIntersect.y - ray.getOrigin().y) > epsilon
-			&& std::fabs(firstIntersect.z - ray.getOrigin().z) > epsilon
-			)
-		{
-			returnVector.push_back(firstIntersect);
-		}
-
-		//returnVector.push_back(
-		//	ray.evaluate(t1)
-		//);
+		returnVector.push_back(firstIntersect);
 	}
 
 	if (discriminant > 0.0 && (-b + sqrt(discriminant)) / (2 * a) > 0.0) {
@@ -142,9 +130,10 @@ Surface* Sphere::clone() const
 
 bool Sphere::verifyIntersection(Vector3D a, Vector3D b)
 {
+	// todo -- same here
 	return std::fabs(a.x - b.x) > 1e-12
-		&& std::fabs(a.y - b.y) > 1e-12
-		&& std::fabs(a.z - b.z) > 1e-12;
+		|| std::fabs(a.y - b.y) > 1e-12
+		|| std::fabs(a.z - b.z) > 1e-12;
 }
 
 Vector3D Sphere::getNormal(Vector3D point)

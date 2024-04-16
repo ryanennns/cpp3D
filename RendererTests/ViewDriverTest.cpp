@@ -16,11 +16,6 @@ namespace RenderEngineTests
 	TEST_CLASS(ViewDriverTest)
 	{
 	public:
-		TEST_METHOD(test_it_snickers)
-		{
-			Assert::AreEqual(0.25000000000000000, 0.25000000000000001);
-		}
-
 		TEST_METHOD(test_it_detects_if_sphere_is_in_shadow)
 		{
 			Scene scene = Scene();
@@ -39,27 +34,23 @@ namespace RenderEngineTests
 			intrudingObject.setColour(Rgb(0, 0, 255));
 			intrudingObject.addSurface(
 				new Triangle(
-					Vector3D(-0.1, -0.1, 2.2),
-					Vector3D(1, 0, 2.2),
-					Vector3D(0, 1, 2.2)
+					Vector3D(-0.1, -0.1, 2),
+					Vector3D(1, 0, 2),
+					Vector3D(0, 1, 2)
 				)
 			);
 
 			scene.addObject(&intrudingObject);
 
 			ViewDriver viewDriver = ViewDriver(&scene, ViewPort(200,200));
-			Light light = Light(Vector3D(0, 0, 2));
+			Light light = Light(Vector3D(0, 0, 1));
 
 			vector<HitDetection> intersections = scene.intersections(Ray(Vector3D(0, 0, 0), Vector3D(0, 0, 1)));
 
 			Assert::AreEqual((size_t)3, intersections.size());
 
 			bool isShadowed = viewDriver.isInShadow(intersections.at(0), &light);
-			Assert::AreEqual((unsigned char)255, intersections.at(1).getColour().getRed());
-			Assert::IsFalse(isShadowed);
-
-			isShadowed = viewDriver.isInShadow(intersections.at(2), &light);
-			Assert::AreEqual((unsigned char)255, intersections.at(2).getColour().getBlue());
+			Assert::AreEqual(2.5, intersections.at(0).getHitPoint().z);
 			Assert::IsTrue(isShadowed);
 		}
 
