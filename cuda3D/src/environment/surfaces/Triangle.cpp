@@ -142,9 +142,10 @@ Surface* Triangle::clone() const
 
 bool Triangle::verifyIntersection(Vector3D a, Vector3D b)
 {
+	// todo -- revisit this in case it causes problems down the line
 	return std::fabs(a.x - b.x) > 1e-12
-		&& std::fabs(a.y - b.y) > 1e-12
-		&& std::fabs(a.z - b.z) > 1e-12;
+		|| std::fabs(a.y - b.y) > 1e-12
+		|| std::fabs(a.z - b.z) > 1e-12;
 }
 
 Vector3D Triangle::getNormal(Vector3D point)
