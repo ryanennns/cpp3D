@@ -91,5 +91,21 @@ namespace EnvironmentTests
 
 			Assert::AreEqual((size_t)0, rayIntersections.size());
 		}
+		
+		TEST_METHOD(test_it_translates_sphere)
+		{
+			Sphere sphere = Sphere(Vector3D(0, 0, 0), 1);
+			Vector3D transformVector = Vector3D(1, 1, 1);
+
+			Vector3D expectedCenter = sphere.getCenter().add(transformVector);
+
+			sphere.transform(transformVector);
+
+			Vector3D actualCenter = sphere.getCenter();
+
+			Assert::AreEqual(expectedCenter.x, actualCenter.x);
+			Assert::AreEqual(expectedCenter.y, actualCenter.y);
+			Assert::AreEqual(expectedCenter.z, actualCenter.z);
+		}
 	};
 }
