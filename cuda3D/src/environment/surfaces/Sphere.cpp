@@ -123,6 +123,16 @@ void Sphere::transform(Vector3D translation, Vector3D rotation)
 	this->center = this->center.add(translation);
 }
 
+void Sphere::translate(Vector3D translation)
+{
+	this->center = this->center.add(translation);
+}
+
+void Sphere::rotate(Vector3D rotation)
+{
+	// todo -- implement rotation
+}
+
 Surface* Sphere::clone() const
 {
 	return new Sphere(*this);

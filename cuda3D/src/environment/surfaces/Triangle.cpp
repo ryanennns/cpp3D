@@ -135,6 +135,18 @@ void Triangle::transform(Vector3D translation, Vector3D rotation)
 	this->C = this->C.add(translation);
 }
 
+void Triangle::translate(Vector3D translation)
+{
+	this->A = this->A.add(translation);
+	this->B = this->B.add(translation);
+	this->C = this->C.add(translation);
+}
+
+void Triangle::rotate(Vector3D rotation)
+{
+	// todo -- implement rotation
+}
+
 Surface* Triangle::clone() const
 {
 	return new Triangle(*this);

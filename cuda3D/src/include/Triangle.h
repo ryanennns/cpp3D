@@ -32,6 +32,8 @@ public:
 
 	std::vector<Vector3D> intersections(Ray) override;
 	void transform(Vector3D translation, Vector3D rotation = Vector3D(0, 0, 0)) override;
+	void translate(Vector3D) override;
+	void rotate(Vector3D) override;
 	Surface* clone() const override;
 
 	Rgb getColour() override;

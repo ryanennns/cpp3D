@@ -51,9 +51,10 @@ vector<HitDetection> Scene::intersections(Ray ray)
 	{
 		vector<RaySurfaceIntersection> objectIntersections = objects.at(i)->intersections(ray);
 
+		// VERY minor optimization to be had by only returning the first intersection
 		for (int j = 0; j < objectIntersections.size(); j++)
 		{
-			RaySurfaceIntersection intersection = objectIntersections.at(j);
+			RaySurfaceIntersection intersection = objectIntersections.at(0);
 			intersections.push_back(
 				HitDetection(
 					intersection.getHitPoint(),

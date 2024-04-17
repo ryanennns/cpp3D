@@ -16,6 +16,8 @@ public:
 	std::vector<RaySurfaceIntersection> intersections(Ray ray);
 	void addSurface(Surface* surface);
 	void transform(Vector3D translation, Vector3D rotation = Vector3D(0,0,0));
+	void translate(Vector3D translation);
+	void rotate(Vector3D rotation);
 	void setColour(Rgb colour);
 	Rgb getColour();
 private:

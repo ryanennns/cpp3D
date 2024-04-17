@@ -16,6 +16,8 @@ public:
 		Vector3D translation,
 		Vector3D rotation = Vector3D(0, 0, 0)
 	) = 0;
+	virtual void translate(Vector3D) = 0;
+	virtual void rotate(Vector3D) = 0;
 	virtual Surface* clone() const = 0;
 	virtual Rgb getColour() = 0;
 	virtual void setColour(Rgb) = 0;

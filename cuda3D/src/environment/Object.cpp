@@ -64,6 +64,22 @@ void Object::transform(Vector3D translation, Vector3D rotation)
 	}
 }
 
+void Object::translate(Vector3D translation)
+{
+	for (int i = 0; i < surfaces.size(); i++)
+	{
+		surfaces.at(i)->translate(translation);
+	}
+}
+
+void Object::rotate(Vector3D rotation)
+{
+	for (int i = 0; i < surfaces.size(); i++)
+	{
+		surfaces.at(i)->rotate(rotation);
+	}
+}
+
 void Object::setColour(Rgb colour)
 {
 	this->colour = colour;
