@@ -63,55 +63,58 @@ int main(int argc, char* args[])
 
 	screenSurface = SDL_GetWindowSurface(window);
 
+	// =============================================================
+	// SPHERE OVER RAMP
+	// =============================================================
+	Object* rampSurface = new Object();
+	rampSurface->addSurface(new Triangle(
+		Vector3D(2, 2, 3),
+		Vector3D(-2, 2, 3),
+		Vector3D(-2, 0, 4),
+		Rgb(255, 100, 0),
+		1.01
+	));
+	rampSurface->addSurface(new Triangle(
+		Vector3D(2, 2, 3),
+		Vector3D(-2, 0, 4),
+		Vector3D(2, 0, 4),
+		Rgb(0, 255, 100),
+		1.01
+	));
+	rampSurface->addSurface(new Triangle(
+		Vector3D(2, -1, 6),
+		Vector3D(-2, 0, 4),
+		Vector3D(2, 0, 4),
+		Rgb(0, 100, 255),
+		1.01
+	));
+	rampSurface->addSurface(new Triangle(
+		Vector3D(2, -1, 6),
+		Vector3D(-2, 0, 4),
+		Vector3D(-2, -1, 6),
+		Rgb(255, 0, 255),
+		1.01
+	));
+	Object* sphere = new Object();
+	sphere->addSurface(new Sphere(
+		Vector3D(-1, -1, 3.75),
+		0.5,
+		Rgb(100, 200, 255),
+		16
+	));
+
+	Scene* scene = new Scene();
+	sphere->setColour(Rgb(209, 133, 93));
+	scene->addObject(sphere);
+	scene->addObject(rampSurface);
+	scene->addLight(new Light(Vector3D(0, -2, 3)));
+
 	for(double i = 0.0; i >= 0.0; i += 0.1)
 	{
 		auto start = std::chrono::high_resolution_clock::now();
-		Scene* scene = new Scene();
 
-		// =============================================================
-		// SPHERE OVER RAMP
-		// =============================================================
-		Object* triangle = new Object();
-		triangle->addSurface(new Triangle(
-			Vector3D(2, 2, 3),
-			Vector3D(-2, 2, 3),
-			Vector3D(-2, 0, 4),
-			Rgb(255, 100, 0),
-			1.01
-		));
-		triangle->addSurface(new Triangle(
-			Vector3D(2, 2, 3),
-			Vector3D(-2, 0, 4),
-			Vector3D(2, 0, 4),
-			Rgb(0, 255, 100),
-			1.01
-		));
-		triangle->addSurface(new Triangle(
-			Vector3D(2, -1, 6),
-			Vector3D(-2, 0, 4),
-			Vector3D(2, 0, 4),
-			Rgb(0, 100, 255),
-			1.01
-		));
-		triangle->addSurface(new Triangle(
-			Vector3D(2, -1, 6),
-			Vector3D(-2, 0, 4),
-			Vector3D(-2, -1, 6),
-			Rgb(255, 0, 255),
-			1.01
-		));
-		Object* sphere = new Object();
-		sphere->addSurface(new Sphere(
-			Vector3D(-1 + i, -1, 3.75),
-			0.5,
-			Rgb(100, 200, 255),
-			16
-		));
-		sphere->setColour(Rgb(209, 133, 93));
-		scene->addObject(sphere);
-		scene->addObject(triangle);
-
-		scene->addLight(new Light(Vector3D(0, -2, 3)));
+		sphere->translate(Vector3D(0.1, 0, 0));
+		rampSurface->translate(Vector3D(0.1, 0, 0));
 
 		ViewPort viewPort = ViewPort(SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -127,10 +130,8 @@ int main(int argc, char* args[])
 		}
 
 		SDL_UpdateWindowSurface(window);
-		delete scene;
 
 		auto finish = std::chrono::high_resolution_clock::now();
-
 		int ms = (int)std::chrono::duration_cast<std::chrono::milliseconds>(finish - start).count();
 		printf("FPS: %lf\n", 1 / (ms * 0.001));
 	}
