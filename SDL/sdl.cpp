@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <vector>
+#include <chrono>
 
 #include "Sphere.h"
 #include "Vector3D.h"
@@ -64,9 +65,9 @@ int main(int argc, char* args[])
 
 	for(double i = 0.0; i >= 0.0; i += 0.1)
 	{
+		auto start = std::chrono::high_resolution_clock::now();
 		Scene* scene = new Scene();
 
-		printf("%lf", i);
 		// =============================================================
 		// SPHERE OVER RAMP
 		// =============================================================
@@ -127,6 +128,11 @@ int main(int argc, char* args[])
 
 		SDL_UpdateWindowSurface(window);
 		delete scene;
+
+		auto finish = std::chrono::high_resolution_clock::now();
+
+		int ms = (int)std::chrono::duration_cast<std::chrono::milliseconds>(finish - start).count();
+		printf("FPS: %lf\n", 1 / (ms * 0.001));
 	}
 
 	SDL_Event e;
